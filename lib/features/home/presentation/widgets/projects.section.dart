@@ -60,7 +60,7 @@ class ProjectsSection extends StatelessWidget {
               isMobile: isMobile,
               yellowColor: yellowColor,
               title: 'AirMouse',
-              description: 'Este projeto transforma um smartphone em um mouse sem utilizando o giroscópio do dispositivo e comunicação via WebSockets. Utiliza os sensores de giroscópio (Pitch, Roll e Yaw) para traduzir inclinações do celular em deslocamento do cursor no PC.',
+              description: 'Este projeto transforma um smartphone em um mouse sem fio utilizando o giroscópio do dispositivo e comunicação via WebSockets. Utiliza os sensores de giroscópio (Pitch, Roll e Yaw) para traduzir inclinações do celular em deslocamento do cursor no PC.',
               tags: ['Flutter', 'NodeJS', 'TypeScript'],
               url: 'https://github.com/gustavopalla/AirMouse---App',
               imagePath: 'assets/projects/airmouse/1.jpeg',
