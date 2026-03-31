@@ -23,31 +23,41 @@ class ProjectsSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 40, vertical: 80),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 24 : 40,
+        vertical: 80,
+      ),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1200),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Projetos', 
+              'Projetos',
               style: GoogleFonts.poppins(
-                color: yellowColor, 
-                fontSize: 36, 
-                fontWeight: FontWeight.bold
-              )
+                color: yellowColor,
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 48),
-            
+
             // Exemplo de Projeto
             _buildProjectCard(
               context: context,
               isMobile: isMobile,
               yellowColor: yellowColor,
               title: 'BookFinder',
-              description: 'Um buscador livros desenvolvido para facilitar a localização de arquivos PDF na internet. A ideia desse projeto veio de uma necessidade real. Minha namorada precisava facilitar a busca dela por PDFs para colocar subir no kindle que ela tem. Como ela tem Iphone, então não queria pagar uma taxa para a apple para subir minha aplicação para IOS. Então subi o projeto na vercel para que ela pudesse utilizar via web e o projeto ficou responsivo para computador e para mobile.',
-              tags: ['Flutter Web/Android', 'NodeJS', 'TypeScript', 'Render', 'API Serper.dev'],
-              url: 'https://github.com/gustavopalla/BookFinder',
+              description:
+                  'Um buscador livros desenvolvido para facilitar a localização de arquivos PDF na internet. A ideia desse projeto veio de uma necessidade real. Minha namorada precisava facilitar a busca dela por PDFs para colocar subir no kindle que ela tem. Como ela tem Iphone, então não queria pagar uma taxa para a apple para subir minha aplicação para IOS. Então subi o projeto na vercel para que ela pudesse utilizar via web e o projeto ficou responsivo para computador e para mobile.',
+              tags: [
+                'Flutter Web/Android',
+                'NodeJS',
+                'TypeScript',
+                'Render',
+                'API Serper.dev',
+              ],
+              url: 'https://book-finder-lilac-six.vercel.app/',
               imagePath: 'assets/projects/bookfinder/3.png',
               screenshotPaths: [
                 'assets/projects/bookfinder/1.png',
@@ -60,14 +70,14 @@ class ProjectsSection extends StatelessWidget {
               isMobile: isMobile,
               yellowColor: yellowColor,
               title: 'AirMouse',
-              description: 'Este projeto transforma um smartphone em um mouse sem fio utilizando o giroscópio do dispositivo e comunicação via WebSockets. Utiliza os sensores de giroscópio (Pitch, Roll e Yaw) para traduzir inclinações do celular em deslocamento do cursor no PC.',
+              description:
+                  'Este projeto transforma um smartphone em um mouse sem fio utilizando o giroscópio do dispositivo e comunicação via WebSockets. Utiliza os sensores de giroscópio (Pitch, Roll e Yaw) para traduzir inclinações do celular em deslocamento do cursor no PC.',
               tags: ['Flutter', 'NodeJS', 'TypeScript'],
               url: 'https://github.com/gustavopalla/AirMouse---App',
               imagePath: 'assets/projects/airmouse/1.jpeg',
               screenshotPaths: [
                 'assets/projects/airmouse/1.jpeg',
                 'assets/projects/airmouse/2.jpeg',
-
               ],
             ),
           ],
@@ -119,34 +129,38 @@ class ProjectsSection extends StatelessWidget {
                         size: 48,
                       ),
                     )
-                  : const Icon(Icons.broken_image, color: Colors.white10, size: 48),
+                  : const Icon(
+                      Icons.broken_image,
+                      color: Colors.white10,
+                      size: 48,
+                    ),
             ),
           ),
           const SizedBox(width: 40, height: 32),
-          
+
           Expanded(
             flex: isMobile ? 0 : 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title, 
+                  title,
                   style: GoogleFonts.poppins(
-                    color: Colors.white, 
-                    fontSize: 24, 
-                    fontWeight: FontWeight.bold
-                  )
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  description, 
+                  description,
                   style: GoogleFonts.poppins(
-                    color: Colors.white.withOpacity(0.6), 
-                    fontSize: 16
-                  )
+                    color: Colors.white.withOpacity(0.6),
+                    fontSize: 16,
+                  ),
                 ),
                 const SizedBox(height: 32),
-                
+
                 // Botões com ações separadas
                 Wrap(
                   spacing: 24,
@@ -154,18 +168,24 @@ class ProjectsSection extends StatelessWidget {
                   children: [
                     // AÇÃO 1: Abrir Link Externo
                     _ActionButton(
-                      label: 'Ver projeto', 
-                      icon: Icons.open_in_new, 
+                      label: 'Ver projeto',
+                      icon: Icons.open_in_new,
                       color: yellowColor,
                       onTap: () => _launchExternalUrl(url),
                     ),
-                    
+
                     // AÇÃO 2: Abrir Modal de Screenshots
                     _ActionButton(
-                      label: '${screenshotPaths.length} screenshots', 
-                      icon: Icons.image_outlined, 
+                      label: '${screenshotPaths.length} screenshots',
+                      icon: Icons.image_outlined,
                       color: Colors.white24,
-                      onTap: () => _openModal(context, title, description, url, screenshotPaths),
+                      onTap: () => _openModal(
+                        context,
+                        title,
+                        description,
+                        url,
+                        screenshotPaths,
+                      ),
                     ),
                   ],
                 ),
@@ -177,14 +197,20 @@ class ProjectsSection extends StatelessWidget {
     );
   }
 
-  void _openModal(BuildContext context, String title, String desc, String url, List<String> paths) {
+  void _openModal(
+    BuildContext context,
+    String title,
+    String desc,
+    String url,
+    List<String> paths,
+  ) {
     showDialog(
       context: context,
       builder: (context) => ProjectsDetailModal(
-        title: title, 
-        description: desc, 
-        url: url, 
-        screenshots: paths
+        title: title,
+        description: desc,
+        url: url,
+        screenshots: paths,
       ),
     );
   }
@@ -197,10 +223,10 @@ class _ActionButton extends StatelessWidget {
   final VoidCallback onTap;
 
   const _ActionButton({
-    required this.label, 
-    required this.icon, 
-    required this.color, 
-    required this.onTap
+    required this.label,
+    required this.icon,
+    required this.color,
+    required this.onTap,
   });
 
   @override
@@ -214,12 +240,12 @@ class _ActionButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              label, 
+              label,
               style: GoogleFonts.poppins(
-                color: color, 
+                color: color,
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
-              )
+              ),
             ),
             const SizedBox(width: 8),
             Icon(icon, color: color, size: 18),
