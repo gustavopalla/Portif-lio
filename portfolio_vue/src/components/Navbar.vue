@@ -10,9 +10,10 @@
         <a href="#home" @click="closeMenu">Início</a>
         <a href="#about" @click="closeMenu">Sobre</a>
         <a href="#skills" @click="closeMenu">Skills</a>
+        <a href="#process" @click="closeMenu">Processo</a>
         <a href="#experience" @click="closeMenu">Experiência</a>
         <a href="#projects" @click="closeMenu">Projetos</a>
-        <a href="mailto:impalla404@gmail.com" class="cta-button">Contato</a>
+        <button @click="handleContactClick" class="cta-button">Contato</button>
       </div>
 
       <button class="mobile-toggle" @click="isMobileMenuOpen = !isMobileMenuOpen">
@@ -23,7 +24,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, inject } from 'vue';
+
+const openModal = inject('openContactModal');
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -34,6 +37,11 @@ const handleScroll = () => {
 
 const closeMenu = () => {
   isMobileMenuOpen.value = false;
+};
+
+const handleContactClick = () => {
+  closeMenu();
+  openModal();
 };
 
 onMounted(() => {
@@ -113,13 +121,17 @@ onUnmounted(() => {
   color: white !important;
   padding: 10px 24px;
   border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
   transition: all 0.3s ease !important;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
 }
 
 .mobile-toggle {

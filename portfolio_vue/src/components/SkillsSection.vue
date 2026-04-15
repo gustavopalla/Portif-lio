@@ -1,11 +1,20 @@
 <template>
   <section id="skills" class="skills">
     <div class="container">
-      <h2 class="section-title">Habilidades</h2>
+      <h2 class="section-title">Habilidades & Stack</h2>
+      
       <div class="skills-grid">
-        <div v-for="skill in skills" :key="skill.name" class="skill-card glass-card">
-          <component :is="skill.icon" class="skill-icon" :style="{ color: skill.color }" />
-          <span class="skill-name">{{ skill.name }}</span>
+        <div v-for="category in skillCategories" :key="category.title" class="skill-category-card glass-card">
+          <div class="category-header">
+            <span class="category-icon">{{ category.emoji }}</span>
+            <h3 class="category-title">{{ category.title }}</h3>
+          </div>
+          <ul class="skill-list">
+            <li v-for="skill in category.skills" :key="skill" class="skill-item">
+              <Check class="check-icon" size="16" />
+              <span>{{ skill }}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -16,94 +25,125 @@
 import { onMounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  Database, 
-  Github, 
-  Globe, 
-  Layout, 
-  Zap, 
-  Code2 
-} from 'lucide-vue-next';
+import { Check } from 'lucide-vue-next';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skillsGrid = ref(null);
-
-const skills = [
-  { name: 'Flutter', icon: Layout, color: '#02569B' },
-  { name: 'SQL', icon: Database, color: '#94a3b8' },
-  { name: 'Git/GitHub', icon: Github, color: '#ffffff' },
-  { name: 'API REST', icon: Globe, color: '#f97316' },
-  { name: 'NodeJS', icon: Code2, color: '#339933' },
-  { name: 'TypeScript', icon: Zap, color: '#3178C6' },
-  { name: 'Supabase', icon: Zap, color: '#3ECF8E' },
-];
+const skillCategories = ref([
+  {
+    title: 'Frontend/Mobile',
+    emoji: '🎨',
+    skills: ['Flutter', 'Vue.js', 'React', 'Vite', 'HTML5', 'CSS3', 'JavaScript ES2024']
+  },
+  {
+    title: 'Backend & DB',
+    emoji: '⚙️',
+    skills: ['Node.js', 'Supabase', 'PostgreSQL', 'REST APIs', 'Dart']
+  },
+  {
+    title: 'Automações',
+    emoji: '🤖',
+    skills: ['n8n', 'Webhooks', 'Meta Cloud API', 'WhatsApp API']
+  },
+  {
+    title: 'Ferramentas',
+    emoji: '🔧',
+    skills: ['Git', 'VS Code', 'Figma', 'Vercel']
+  }
+]);
 
 onMounted(() => {
-  gsap.fromTo(".skill-card", 
-    { 
-      y: 30, 
-      opacity: 0 
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: "power2.out",
+  // Wait for next tick to ensure DOM is ready
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+    
+    gsap.from(".skill-category-card", {
       scrollTrigger: {
         trigger: ".skills-grid",
-        start: "top 90%",
+        start: "top 95%",
         toggleActions: "play none none none"
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
+      onComplete: () => {
+        gsap.set(".skill-category-card", { opacity: 1, y: 0 });
       }
-    }
-  );
+    });
+  }, 200);
 });
 </script>
 
 <style scoped>
 .skills {
-  padding: 100px 0;
+  padding: 120px 0;
+  position: relative;
 }
 
 .section-title {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
 }
 
-.skill-card {
-  padding: 40px 20px;
+.skill-category-card {
+  padding: 40px 32px;
+  border-radius: 24px;
+}
+
+.category-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  text-align: center;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-.skill-icon {
-  width: 40px;
-  height: 40px;
-  transition: transform 0.3s ease;
+.category-icon {
+  font-size: 2rem;
 }
 
-.skill-card:hover .skill-icon {
-  transform: scale(1.2) rotate(5deg);
-}
-
-.skill-name {
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.skill-card:hover .skill-name {
+.category-title {
+  font-size: 1.5rem;
   color: var(--text-primary);
+  opacity: 0.9;
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.check-icon {
+  color: var(--primary-accent);
+  opacity: 0.8;
+}
+
+.skill-category-card:hover {
+  border-color: var(--primary-accent);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -4,20 +4,20 @@
       <div class="hero-text" ref="heroText">
         <h2 class="greeting">Olá,</h2>
         <h1 class="name title-gradient">Gustavo Palla,</h1>
-        <h2 class="role">Estudante e <span class="accent">Futuro Dev</span></h2>
+        <h2 class="role">Dev Web <span class="accent">Especialista</span></h2>
         
         <p class="description">
-          Transformando ideias em experiências digitais excepcionais. 
-          Especializado em criar aplicações mobile modernas e sistemas escaláveis.
+          Especialista em construir sites de alta conversão e
+          automações inteligentes que geram resultados reais.
         </p>
 
         <div class="actions">
-          <a href="mailto:impalla404@gmail.com" class="btn primary">CONTATO</a>
+          <button @click="openModal" class="btn primary">CONTATO</button>
           <a href="/curriculo.pdf" target="_blank" class="btn secondary">CURRÍCULO</a>
         </div>
 
         <div class="social-links">
-          <a href="https://linkedin.com/in/gustavopalla" target="_blank" class="social-icon">
+          <a href="https://www.linkedin.com/in/gustavopalla/" target="_blank" class="social-icon">
             <Linkedin size="24" />
           </a>
           <a href="https://github.com/gustavopalla" target="_blank" class="social-icon">
@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import { Linkedin, Github } from 'lucide-vue-next';
 import { gsap } from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
@@ -60,21 +60,18 @@ const heroText = ref(null);
 const codeBlock = ref(null);
 const typingCode = ref(null);
 
-const codeString = `class Role {
-  constructor() {
-    this.nome = "Gustavo Palla";
-    this.cargo = "Consultor de Implantação JR e Futuro Dev";
-    this.skills = [
-      "Flutter", "Dart", 
-      "Supabase", "REST APIs",
-      "Git", "NodeJS", "Typescript"
-    ];
-  }
+const codeString = `const developer = {
+  name: 'Gustavo Palla',
+  focus: 'conversion & automation',
+  stack: [
+    'Vue.js', 'Vite',
+    'n8n', 'Supabase',
+    'Meta Cloud API'
+  ],
+  status: true // available
+};`;
 
-  build() {
-    return "Apps incríveis";
-  }
-}`;
+const openModal = inject('openContactModal');
 
 onMounted(() => {
   // Hero Text Animation
@@ -95,10 +92,14 @@ onMounted(() => {
     ease: "power3.out"
   });
 
-  // Typing Animation
+  // Typing Animation with preserved whitespace
   gsap.to(typingCode.value, {
     duration: 3,
-    text: codeString,
+    text: {
+      value: codeString,
+      preserveSpaces: true,
+      rtl: false
+    },
     delay: 1.5,
     ease: "none"
   });
@@ -169,12 +170,15 @@ onMounted(() => {
 .btn.primary {
   background: var(--primary-accent);
   color: white;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .btn.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
 }
 
 .btn.secondary {
@@ -270,7 +274,8 @@ pre {
 
 code {
   color: var(--secondary-accent);
-  white-space: pre-wrap;
+  white-space: pre;
+  display: block;
 }
 
 @media (max-width: 992px) {

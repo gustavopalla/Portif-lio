@@ -75,7 +75,7 @@ onMounted(() => {
 
 .edu-icon {
   padding: 16px;
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(59, 130, 246, 0.1);
   border-radius: 16px;
   color: var(--primary-accent);
 }
@@ -102,7 +102,7 @@ onMounted(() => {
 .status-badge {
   display: inline-block;
   padding: 6px 16px;
-  background: rgba(124, 58, 237, 0.15);
+  background: rgba(59, 130, 246, 0.15);
   color: var(--primary-accent);
   border-radius: 20px;
   font-size: 0.8rem;

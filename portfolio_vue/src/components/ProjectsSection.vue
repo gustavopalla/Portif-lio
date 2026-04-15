@@ -57,7 +57,14 @@ const projects = [
     description: 'Este projeto transforma um smartphone em um mouse sem fio utilizando o giroscópio do dispositivo e comunicação via WebSockets. Utiliza os sensores de giroscópio (Pitch, Roll e Yaw) para traduzir inclinações do celular em deslocamento do cursor no PC.',
     tags: ['Flutter', 'NodeJS', 'TypeScript', 'WebSockets'],
     url: 'https://github.com/gustavopalla/AirMouse---App',
-    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=800&auto=format&fit=crop'
+    image: '/airmouse.jpeg'
+  },
+  {
+    title: 'Dimarte Autosom',
+    description: 'Este projeto é uma landing page para uma loja de som automotivo. A landing page permite que os clientes agendem serviços para seus veículos, melhora a visibilidade da loja no Google (SEO), aumenta a credibilidade da loja, filtra por clientes que querem apenas orçamento ou agendamento.',
+    tags: ['VueJS', 'Vite', 'Desenvolvimento Web'],
+    url: 'https://dimarteautosom.vercel.app/',
+    image: '/dimarte.png'
   }
 ];
 
@@ -158,7 +165,7 @@ onMounted(() => {
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .project-details {
@@ -198,14 +205,14 @@ onMounted(() => {
   padding: 12px 28px;
   background: var(--primary-accent);
   border-radius: 30px;
-  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
   transition: all 0.3s ease;
 }
 
 .cta-link:hover {
   transform: translateX(5px);
-  background: #8b5cf6;
-  box-shadow: 0 15px 30px rgba(124, 58, 237, 0.5);
+  background: #60a5fa;
+  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5);
 }
 
 @media (max-width: 1024px) {
