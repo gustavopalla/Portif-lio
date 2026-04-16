@@ -211,7 +211,8 @@ onMounted(() => {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin-top: -90px;
+  margin-left: -90px;
   width: 180px;
   height: 180px;
   z-index: 2;
@@ -294,7 +295,7 @@ onMounted(() => {
 
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 80px;
+    gap: 40px;
   }
   
   .section-title {
@@ -309,24 +310,36 @@ onMounted(() => {
   
   .about-visual {
     order: -1;
+    margin-bottom: 20px;
   }
 
   .visual-wrapper {
-    width: 260px;
-    height: 260px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
 
   .main-avatar {
-    width: 150px;
-    height: 150px;
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 0 20px 0;
+    width: 160px;
+    height: 160px;
   }
 
-  .location {
-    left: 0;
-  }
-  
-  .stack {
-    right: 0;
+  .floater {
+    position: relative;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100%;
+    max-width: 280px;
+    justify-content: flex-start;
   }
 }
 
@@ -335,14 +348,9 @@ onMounted(() => {
     font-size: 1.8rem;
   }
 
-  .visual-wrapper {
-    width: 220px;
-    height: 220px;
-  }
-
   .main-avatar {
-    width: 130px;
-    height: 130px;
+    width: 140px;
+    height: 140px;
   }
 }
 </style>
