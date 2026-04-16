@@ -150,5 +150,9 @@ onMounted(() => {
   .skills-grid {
     grid-template-columns: 1fr;
   }
+
+  .skill-category-card {
+    padding: 24px 20px;
+  }
 }
 </style>

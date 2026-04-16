@@ -327,7 +327,32 @@ code {
 
 @media (max-width: 480px) {
   .name {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+  .role {
+    font-size: 1.3rem;
+  }
+  .description {
+    font-size: 0.95rem;
+  }
+  
+  .code-content {
+    padding: 16px;
+    font-size: 0.75rem;
+    overflow-x: auto;
+  }
+  
+  pre {
+    margin-left: 10px;
+  }
+  
+  .line-numbers {
+    padding-right: 10px;
+  }
+  
+  .code-window {
+    aspect-ratio: auto; /* Allow height to adjust */
+    height: 300px;
   }
 }
 </style>

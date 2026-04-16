@@ -193,6 +193,11 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
   .section-title {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -203,11 +208,11 @@ onMounted(() => {
   }
 
   .process-card {
-    padding: 40px 30px;
+    padding: 30px 20px;
   }
   
   .step-number {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 </style>
