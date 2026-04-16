@@ -301,7 +301,33 @@ code {
   }
   
   .name {
-    font-size: 3rem;
+    font-size: 2.5rem;
+  }
+
+  .role {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin: 0 auto 32px;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: 2.2rem;
   }
 }
 </style>

@@ -85,7 +85,7 @@ onMounted(() => {
 .section-title {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .skills-grid {
@@ -142,6 +142,11 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
   .skills-grid {
     grid-template-columns: 1fr;
   }

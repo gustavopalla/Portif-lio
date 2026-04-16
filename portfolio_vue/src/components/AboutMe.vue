@@ -142,7 +142,7 @@ onMounted(() => {
 .section-title {
   font-size: 3rem;
   line-height: 1.1;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   max-width: 500px;
 }
 
@@ -288,14 +288,19 @@ onMounted(() => {
 }
 
 @media (max-width: 992px) {
+  .about {
+    padding: 60px 0;
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 100px;
+    gap: 80px;
   }
   
   .section-title {
     text-align: center;
-    margin: 0 auto 32px;
+    margin: 0 auto 24px;
+    font-size: 2.2rem;
   }
   
   .bio {
@@ -306,12 +311,38 @@ onMounted(() => {
     order: -1;
   }
 
+  .visual-wrapper {
+    width: 260px;
+    height: 260px;
+  }
+
+  .main-avatar {
+    width: 150px;
+    height: 150px;
+  }
+
   .location {
     left: 0;
   }
   
   .stack {
     right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .visual-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .main-avatar {
+    width: 130px;
+    height: 130px;
   }
 }
 </style>

@@ -49,8 +49,9 @@ onMounted(() => {
 }
 
 .section-title {
+  text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .timeline {
@@ -91,5 +92,23 @@ onMounted(() => {
   color: var(--text-secondary);
   line-height: 1.8;
   max-width: 800px;
+}
+@media (max-width: 768px) {
+  .experience {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+  .experience-card {
+    padding: 30px 20px;
+  }
+
+  .role {
+    font-size: 1.3rem;
+  }
 }
 </style>

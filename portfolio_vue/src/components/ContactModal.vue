@@ -341,12 +341,26 @@ const sendWhatsApp = () => {
 }
 
 @media (max-width: 480px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+
   .modal-container {
     padding: 30px 20px;
   }
   
   .modal-title {
     font-size: 1.5rem;
+  }
+
+  .modal-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  .contact-btn {
+    padding: 12px;
+    font-size: 0.9rem;
   }
 }
 </style>

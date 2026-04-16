@@ -151,17 +151,31 @@ onUnmounted(() => {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 70%;
+    width: 80%;
     height: 100vh;
-    background: var(--bg-color);
+    background: #030014; /* Match bg-color */
     flex-direction: column;
     justify-content: center;
-    transition: 0.4s;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-left: 1px solid var(--border-color);
+    padding: 40px;
+    backdrop-filter: blur(20px);
   }
 
   .nav-links.mobile-active {
     right: 0;
+  }
+
+  .nav-links a {
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  .cta-button {
+    width: 100%;
+    margin-top: 20px;
   }
 }
 </style>

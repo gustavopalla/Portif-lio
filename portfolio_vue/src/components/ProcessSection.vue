@@ -109,12 +109,18 @@ onMounted(() => {
   position: relative;
 }
 
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+}
+
 .section-subtitle {
   text-align: center;
   color: var(--text-secondary);
   font-size: 1.1rem;
   max-width: 600px;
-  margin: -50px auto 80px;
+  margin: 0 auto 80px;
   line-height: 1.6;
 }
 
@@ -187,6 +193,15 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .section-subtitle {
+    margin-bottom: 60px;
+  }
+
   .process-card {
     padding: 40px 30px;
   }

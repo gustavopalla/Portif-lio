@@ -101,7 +101,7 @@ onMounted(() => {
 
 .section-title {
   font-size: 3rem;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   text-align: left;
 }
 
@@ -216,21 +216,34 @@ onMounted(() => {
 }
 
 @media (max-width: 1024px) {
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
   .project-card {
     grid-template-columns: 1fr;
     min-height: auto;
   }
   
   .project-visual {
-    height: 300px;
+    height: 250px;
   }
   
   .project-details {
-    padding: 40px;
+    padding: 30px 24px;
   }
   
   .project-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+
+  .project-description {
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 30px;
   }
 }
 </style>

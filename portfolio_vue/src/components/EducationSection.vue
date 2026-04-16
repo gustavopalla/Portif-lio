@@ -56,8 +56,9 @@ onMounted(() => {
 }
 
 .section-title {
+  text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .education-grid {
@@ -110,6 +111,15 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
+  .education {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
   .education-card {
     flex-direction: column;
     gap: 20px;
