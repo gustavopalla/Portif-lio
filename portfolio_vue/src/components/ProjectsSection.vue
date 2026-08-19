@@ -47,6 +47,13 @@ const projectRefs = ref([]);
 
 const projects = [
   {
+    title: 'Forge',
+    description: 'Um SaaS para personal trainers montarem e organizarem planilhas de treino para seus alunos. Cada aluno pode ter múltiplos planejamentos, com treinos divididos por dia, exercícios com séries, repetições e descanso configuráveis, edição inline e exportação da planilha em PDF pronta para enviar ao aluno.',
+    tags: ['React', 'TypeScript', 'Supabase'],
+    url: 'https://gym-forge-app-six.vercel.app',
+    image: '/forge.png'
+  },
+  {
     title: 'BookFinder',
     description: 'Um buscador livros desenvolvido para facilitar a localização de arquivos PDF na internet. A ideia desse projeto veio de uma necessidade real. Minha namorada precisava facilitar a busca dela por PDFs para colocar subir no kindle que ela tem. Como ela tem Iphone, então não queria pagar uma taxa para a apple para subir minha aplicação para IOS. Então subi o projeto na vercel para que ela pudesse utilizar via web e o projeto ficou responsivo para computador e para mobile.',
     tags: ['Flutter Web/Android', 'NodeJS', 'TypeScript', 'Render', 'API Serper.dev'],
