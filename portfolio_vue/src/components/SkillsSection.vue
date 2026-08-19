@@ -44,7 +44,7 @@ const skillCategories = ref([
   {
     title: 'Automações',
     emoji: '🤖',
-    skills: ['n8n', 'Webhooks', 'Meta Cloud API', 'WhatsApp API']
+    skills: ['Webhooks', 'Meta Cloud API', 'WhatsApp API', 'Integrações via API']
   },
   {
     title: 'Ferramentas',

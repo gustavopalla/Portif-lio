@@ -51,7 +51,7 @@
                   <option value="" disabled selected>Selecione um assunto</option>
                   <option value="Projeto para minha loja">Projeto para minha loja</option>
                   <option value="Landing Page de Alta Conversão">Landing Page de Alta Conversão</option>
-                  <option value="Automação Inteligente (n8n)">Automação Inteligente (n8n)</option>
+                  <option value="Automação Inteligente (WhatsApp)">Automação Inteligente (WhatsApp)</option>
                   <option value="Outros">Outros</option>
                 </select>
               </div>

@@ -71,7 +71,7 @@
               <Wrench size="14" class="floater-icon" />
               <div class="floater-info">
                 <span class="label">Stack principal</span>
-                <span class="value">Vue.js • n8n • Supabase</span>
+                <span class="value">Vue.js • Node.js • Supabase</span>
               </div>
             </div>
           </div>

@@ -76,7 +76,7 @@ const codeString = `const developer = {
   focus: 'conversion & automation',
   stack: [
     'Vue.js', 'Vite',
-    'n8n', 'Supabase',
+    'Node.js', 'Supabase',
     'Meta Cloud API'
   ],
   status: true // available

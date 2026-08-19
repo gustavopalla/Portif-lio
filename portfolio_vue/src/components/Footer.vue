@@ -8,7 +8,7 @@
         </div>
         <p class="tagline">Sites e landing pages que convertem.</p>
         <p class="copyright">
-          © {{ new Date().getFullYear() }} — Desenvolvido com Vue.js &amp; GSAP
+          © {{ new Date().getFullYear() }} — Desenvolvido por Gustavo Palla
         </p>
       </div>
 
