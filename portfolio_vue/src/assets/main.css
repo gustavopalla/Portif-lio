@@ -1,15 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Outfit:wght@400;700&display=swap');
-
+/*
+  Design tokens — see DESIGN_SYSTEM.md for the full rationale.
+  Light, warm, editorial. Inspired by bouayaben.com's typography,
+  adapted to a clean paper background instead of a dark one.
+*/
 :root {
-  --bg-color: #030014;
-  --card-bg: rgba(10, 10, 20, 0.7);
-  --primary-accent: #3b82f6; /* Blue */
-  --secondary-accent: #60a5fa; /* Light Blue */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent-glow: rgba(59, 130, 246, 0.4);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(255, 255, 255, 0.03);
+  /* Surfaces */
+  --bg: #faf8f3;
+  --bg-alt: #f2eee3;
+  --surface: #ffffff;
+  --dark-panel: #15130f;
+  --dark-panel-alt: #1e1c16;
+
+  /* Text */
+  --ink: #15130f;
+  --ink-soft: #4a463f;
+  --muted: #8a8579;
+  --on-dark: #f3f1ea;
+  --on-dark-soft: #a8a396;
+
+  /* Lines */
+  --border: #e4dfd1;
+  --border-strong: #d4cdb9;
+
+  /* Accents */
+  --accent: #ff5a2b;
+  --accent-dark: #e14a1c;
+  --accent-soft: rgba(255, 90, 43, 0.1);
+  --teal: #3fb6a1;
+  --teal-soft: rgba(63, 182, 161, 0.14);
+
+  /* Shadows (soft, neutral — no colored glow) */
+  --shadow-sm: 0 1px 2px rgba(21, 19, 15, 0.04);
+  --shadow-md: 0 10px 30px -12px rgba(21, 19, 15, 0.16);
+  --shadow-lg: 0 30px 60px -20px rgba(21, 19, 15, 0.22);
+
+  /* Radius scale */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Spacing rhythm */
+  --space-section: 120px;
+  --space-section-mobile: 64px;
+
+  /* Type */
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-accent: 'Instrument Serif', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 * {
@@ -18,41 +57,130 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-primary);
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--ink-soft);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
 }
 
-.title-gradient {
-  background: linear-gradient(135deg, #fff 0%, var(--primary-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Editorial italic accent — the "millions." treatment */
+em, .accent-word {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
 }
 
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.eyebrow-centered {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.08;
+}
+
+.section-subtitle {
+  color: var(--ink-soft);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.btn.primary {
+  background: var(--ink);
+  color: var(--on-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn.primary:hover {
+  background: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--border-strong);
+}
+
+.btn.secondary:hover {
+  border-color: var(--ink);
+  background: var(--surface);
+  transform: translateY(-2px);
+}
+
+/* ---------- Cards ---------- */
+/* .glass-card is kept as an alias so existing markup doesn't need renaming */
+.card,
 .glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  transition: all 0.3s ease;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
+.card:hover,
 .glass-card:hover {
-  border-color: var(--primary-accent);
-  box-shadow: 0 0 30px var(--accent-glow);
-  transform: translateY(-5px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
+/* ---------- Layout helpers ---------- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -66,7 +194,7 @@ h1, h2, h3, h4 {
 }
 
 ::selection {
-  background: var(--primary-accent);
+  background: var(--accent);
   color: white;
 }
 
@@ -76,14 +204,14 @@ h1, h2, h3, h4 {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-color);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e1b4b;
+  background: var(--border-strong);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-accent);
+  background: var(--accent);
 }

@@ -124,7 +124,7 @@ const sendWhatsApp = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(3, 0, 20, 0.8);
+  background: rgba(21, 19, 15, 0.55);
   backdrop-filter: blur(8px);
   z-index: 9999;
   display: flex;
@@ -136,12 +136,12 @@ const sendWhatsApp = () => {
 .modal-container {
   width: 100%;
   max-width: 450px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 40px;
   position: relative;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg);
   transition: max-width 0.3s ease;
 }
 
@@ -155,13 +155,13 @@ const sendWhatsApp = () => {
   right: 20px;
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .close-btn:hover {
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .back-btn {
@@ -170,7 +170,7 @@ const sendWhatsApp = () => {
   gap: 8px;
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   font-size: 0.9rem;
   cursor: pointer;
   margin-bottom: 20px;
@@ -178,17 +178,17 @@ const sendWhatsApp = () => {
 }
 
 .back-btn:hover {
-  color: var(--primary-accent);
+  color: var(--accent);
 }
 
 .modal-title {
   font-size: 2rem;
   margin-bottom: 8px;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .modal-subtitle {
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   margin-bottom: 32px;
   font-size: 1rem;
 }
@@ -205,12 +205,12 @@ const sendWhatsApp = () => {
   justify-content: center;
   gap: 12px;
   padding: 16px;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border);
   cursor: pointer;
 }
 
@@ -239,12 +239,12 @@ const sendWhatsApp = () => {
 }
 
 .contact-btn.email {
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text-primary);
+  background: var(--bg-alt);
+  color: var(--ink);
 }
 
 .contact-btn.email:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border);
   transform: translateY(-2px);
 }
 
@@ -263,18 +263,18 @@ const sendWhatsApp = () => {
 
 .form-group label {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   font-weight: 500;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   padding: 12px 16px;
-  color: var(--text-primary);
+  color: var(--ink);
   font-family: inherit;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -284,9 +284,9 @@ const sendWhatsApp = () => {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--primary-accent);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .submit-btn {
@@ -295,7 +295,7 @@ const sendWhatsApp = () => {
   justify-content: center;
   gap: 12px;
   padding: 16px;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   border: none;
   font-weight: 600;
   font-size: 1rem;

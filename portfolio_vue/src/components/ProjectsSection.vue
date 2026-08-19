@@ -1,6 +1,7 @@
 <template>
   <section id="projects" class="projects">
     <div class="container">
+      <span class="eyebrow">Trabalhos selecionados</span>
       <h2 class="section-title">Projetos</h2>
       
       <div class="projects-list">
@@ -99,6 +100,11 @@ onMounted(() => {
   position: relative;
 }
 
+.eyebrow {
+  display: flex;
+  margin-bottom: 16px;
+}
+
 .section-title {
   font-size: 3rem;
   margin-bottom: 60px;
@@ -115,36 +121,35 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   min-height: 450px;
-  border-radius: 40px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  background: rgba(10, 10, 25, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  transition: transform 0.4s ease, border-color 0.4s ease;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .project-card:hover {
-  border-color: var(--primary-accent);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-5px);
 }
 
 .project-visual {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background: var(--bg-alt);
 }
 
 .main-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8;
   transition: transform 0.6s ease;
 }
 
 .project-card:hover .main-img {
   transform: scale(1.05);
-  opacity: 1;
 }
 
 .floating-tags {
@@ -158,14 +163,14 @@ onMounted(() => {
 }
 
 .tag {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(250, 248, 243, 0.9);
   backdrop-filter: blur(8px);
-  color: var(--primary-accent);
+  color: var(--ink);
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid var(--border);
 }
 
 .project-details {
@@ -173,22 +178,19 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(10,10,25,0.8) 0%, rgba(15,15,35,0.9) 100%);
 }
 
 .project-title {
   font-size: 2.5rem;
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 24px;
-  font-weight: 800;
 }
 
 .project-description {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   margin-bottom: 40px;
-  text-align: justify;
 }
 
 .project-footer {
@@ -199,20 +201,18 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: #fff;
+  color: var(--on-dark);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   padding: 12px 28px;
-  background: var(--primary-accent);
-  border-radius: 30px;
-  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+  background: var(--ink);
+  border-radius: var(--radius-md);
   transition: all 0.3s ease;
 }
 
 .cta-link:hover {
-  transform: translateX(5px);
-  background: #60a5fa;
-  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5);
+  transform: translateX(4px);
+  background: var(--accent);
 }
 
 @media (max-width: 1024px) {

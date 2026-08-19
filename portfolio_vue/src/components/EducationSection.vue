@@ -1,6 +1,7 @@
 <template>
   <section id="education" class="education">
     <div class="container">
+      <span class="eyebrow eyebrow-centered">Formação acadêmica</span>
       <h2 class="section-title">Formação</h2>
       <div class="education-grid">
         <div v-for="edu in education" :key="edu.title" class="education-card glass-card">
@@ -76,9 +77,9 @@ onMounted(() => {
 
 .edu-icon {
   padding: 16px;
-  background: rgba(59, 130, 246, 0.1);
+  background: var(--accent-soft);
   border-radius: 16px;
-  color: var(--primary-accent);
+  color: var(--accent);
 }
 
 .edu-title {
@@ -87,14 +88,14 @@ onMounted(() => {
 }
 
 .institution {
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   font-size: 1.1rem;
   margin-bottom: 4px;
 }
 
 .period {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   opacity: 0.5;
   display: block;
   margin-bottom: 16px;
@@ -103,8 +104,8 @@ onMounted(() => {
 .status-badge {
   display: inline-block;
   padding: 6px 16px;
-  background: rgba(59, 130, 246, 0.15);
-  color: var(--primary-accent);
+  background: var(--accent-soft);
+  color: var(--accent);
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;

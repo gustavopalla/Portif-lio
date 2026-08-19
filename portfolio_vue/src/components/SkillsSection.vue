@@ -1,6 +1,7 @@
 <template>
   <section id="skills" class="skills">
     <div class="container">
+      <span class="eyebrow eyebrow-centered">Stack técnico</span>
       <h2 class="section-title">Habilidades & Stack</h2>
       
       <div class="skills-grid">
@@ -112,7 +113,7 @@ onMounted(() => {
 
 .category-title {
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: var(--ink);
   opacity: 0.9;
 }
 
@@ -127,18 +128,16 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   font-size: 1rem;
 }
 
 .check-icon {
-  color: var(--primary-accent);
-  opacity: 0.8;
+  color: var(--teal);
 }
 
 .skill-category-card:hover {
-  border-color: var(--primary-accent);
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+  border-color: var(--accent);
 }
 
 @media (max-width: 768px) {

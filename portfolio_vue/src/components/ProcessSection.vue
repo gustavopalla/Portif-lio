@@ -1,6 +1,7 @@
 <template>
   <section id="process" class="process">
     <div class="container">
+      <span class="eyebrow eyebrow-centered">Metodologia</span>
       <h2 class="section-title">Como eu trabalho</h2>
       <p class="section-subtitle">Um processo transparente focado em transformar sua visão em realidade de alta conversão.</p>
 
@@ -109,6 +110,12 @@ onMounted(() => {
   position: relative;
 }
 
+.eyebrow-centered {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
 .section-title {
   text-align: center;
   font-size: 2.5rem;
@@ -117,7 +124,7 @@ onMounted(() => {
 
 .section-subtitle {
   text-align: center;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   font-size: 1.1rem;
   max-width: 600px;
   margin: 0 auto 80px;
@@ -146,10 +153,11 @@ onMounted(() => {
   position: absolute;
   top: 20px;
   right: 30px;
+  font-family: var(--font-display);
   font-size: 4rem;
-  font-weight: 900;
-  color: var(--primary-accent);
-  opacity: 0.05;
+  font-weight: 700;
+  color: var(--ink);
+  opacity: 0.06;
   line-height: 1;
   pointer-events: none;
 }
@@ -157,30 +165,29 @@ onMounted(() => {
 .step-icon {
   width: 70px;
   height: 70px;
-  background: rgba(59, 130, 246, 0.1);
+  background: var(--accent-soft);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-accent);
+  color: var(--accent);
   margin-bottom: 24px;
   transition: all 0.3s ease;
 }
 
 .process-card:hover .step-icon {
-  transform: scale(1.1) rotate(5deg);
-  background: rgba(59, 130, 246, 0.2);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  background: var(--accent);
+  color: var(--on-dark);
 }
 
 .step-title {
   font-size: 1.5rem;
   margin-bottom: 16px;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .step-description {
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   font-size: 1rem;
   line-height: 1.6;
 }

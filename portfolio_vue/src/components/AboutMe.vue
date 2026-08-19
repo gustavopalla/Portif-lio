@@ -4,7 +4,8 @@
       <div class="about-grid">
         <!-- Text Side -->
         <div class="about-text" ref="aboutText">
-          <h2 class="section-title">Código com propósito, resultado com clareza.</h2>
+          <span class="eyebrow">Sobre mim</span>
+          <h2 class="section-title">Código com propósito, resultado com <em>clareza</em>.</h2>
           <div class="bio">
             <p>
               Sou <strong>Gustavo Palla</strong>, desenvolvedor especializado em criar estruturas digitais de conversão. Trabalho na interseção entre design estratégico, engenharia de produto e automação — entregando sistemas que não apenas existem online, mas geram resultados reais.
@@ -142,19 +143,19 @@ onMounted(() => {
 .section-title {
   font-size: 3rem;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin: 16px 0 24px;
   max-width: 500px;
 }
 
 .bio p {
   font-size: 1.15rem;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   line-height: 1.7;
   margin-bottom: 24px;
 }
 
 .bio strong {
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .features-list {
@@ -174,24 +175,24 @@ onMounted(() => {
 .feature-icon {
   width: 48px;
   height: 48px;
-  background: rgba(59, 130, 246, 0.1);
+  background: var(--accent-soft);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-accent);
+  color: var(--accent);
   flex-shrink: 0;
 }
 
 .feature-info h4 {
   font-size: 1.1rem;
   margin-bottom: 4px;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .feature-info p {
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   line-height: 1.5;
 }
 
@@ -222,15 +223,16 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: var(--bg-color);
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: var(--dark-panel);
+  border: 6px solid var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-display);
   font-size: 3rem;
-  font-weight: 800;
-  color: var(--primary-accent);
-  box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+  font-weight: 600;
+  color: var(--on-dark);
+  box-shadow: var(--shadow-lg);
 }
 
 .avatar-glow {
@@ -238,11 +240,9 @@ onMounted(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 130%;
-  height: 130%;
-  background: var(--primary-accent);
-  filter: blur(50px);
-  opacity: 0.15;
+  width: 118%;
+  height: 118%;
+  border: 1px dashed var(--border-strong);
   border-radius: 50%;
 }
 
@@ -257,7 +257,7 @@ onMounted(() => {
 }
 
 .floater-icon {
-  color: var(--primary-accent);
+  color: var(--accent);
 }
 
 .floater-info {
@@ -268,14 +268,14 @@ onMounted(() => {
 .floater .label {
   font-size: 0.7rem;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   letter-spacing: 1px;
 }
 
 .floater .value {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .location {

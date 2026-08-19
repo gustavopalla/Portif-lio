@@ -1,6 +1,7 @@
 <template>
   <section id="experience" class="experience">
     <div class="container">
+      <span class="eyebrow eyebrow-centered">Trajetória</span>
       <h2 class="section-title">Experiências</h2>
       <div class="timeline">
         <div v-for="exp in experiences" :key="exp.company" class="experience-card glass-card">
@@ -71,7 +72,7 @@ onMounted(() => {
 
 .period {
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   opacity: 0.6;
   display: block;
   margin-bottom: 8px;
@@ -83,13 +84,13 @@ onMounted(() => {
 }
 
 .company {
-  color: var(--primary-accent);
+  color: var(--accent);
   font-weight: 500;
   font-size: 1.1rem;
 }
 
 .description {
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   line-height: 1.8;
   max-width: 800px;
 }

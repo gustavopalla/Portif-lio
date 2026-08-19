@@ -1,11 +1,11 @@
 <template>
-  <nav :class="{ 'scrolled': isScrolled }" class="navbar">
+  <nav :class="{ scrolled: isScrolled }" class="navbar">
     <div class="container nav-content">
-      <div class="logo">
+      <a href="#home" class="logo">
         <span class="logo-dot"></span>
-        GUSTAVO PALLA
-      </div>
-      
+        Gustavo Palla
+      </a>
+
       <div class="nav-links" :class="{ 'mobile-active': isMobileMenuOpen }">
         <a href="#home" @click="closeMenu">Início</a>
         <a href="#about" @click="closeMenu">Sobre</a>
@@ -16,8 +16,15 @@
         <button @click="handleContactClick" class="cta-button">Contato</button>
       </div>
 
-      <button class="mobile-toggle" @click="isMobileMenuOpen = !isMobileMenuOpen">
-        <span :class="{ 'open': isMobileMenuOpen }"></span>
+      <button
+        class="mobile-toggle"
+        :class="{ open: isMobileMenuOpen }"
+        @click="isMobileMenuOpen = !isMobileMenuOpen"
+        aria-label="Abrir menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </nav>
@@ -64,12 +71,13 @@ onUnmounted(() => {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
+  background: transparent;
 }
 
 .navbar.scrolled {
-  background: rgba(3, 0, 20, 0.8);
+  background: rgba(250, 248, 243, 0.85);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border);
   height: 70px;
 }
 
@@ -81,10 +89,12 @@ onUnmounted(() => {
 }
 
 .logo {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -93,9 +103,8 @@ onUnmounted(() => {
 .logo-dot {
   width: 8px;
   height: 8px;
-  background: var(--primary-accent);
+  background: var(--accent);
   border-radius: 50%;
-  box-shadow: 0 0 10px var(--primary-accent);
 }
 
 .nav-links {
@@ -106,45 +115,71 @@ onUnmounted(() => {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text-secondary);
+  color: var(--ink-soft);
   font-size: 0.9rem;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .cta-button {
-  background: var(--primary-accent);
-  color: white !important;
-  padding: 10px 24px;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  background: var(--ink);
+  color: var(--on-dark) !important;
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
   transition: all 0.3s ease !important;
   border: none;
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
 .cta-button:hover {
+  background: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
 }
 
 .mobile-toggle {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 0;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
   .mobile-toggle {
-    display: block;
+    display: flex;
   }
 
   .nav-links {
@@ -153,13 +188,13 @@ onUnmounted(() => {
     right: -100%;
     width: 80%;
     height: 100vh;
-    background: #030014; /* Match bg-color */
+    background: var(--bg);
     flex-direction: column;
     justify-content: center;
     transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-left: 1px solid var(--border-color);
+    border-left: 1px solid var(--border);
     padding: 40px;
-    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-lg);
   }
 
   .nav-links.mobile-active {
