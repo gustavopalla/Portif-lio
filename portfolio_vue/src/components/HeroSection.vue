@@ -244,10 +244,9 @@ onUnmounted(() => {
   flex-wrap: wrap;
 }
 
+/* Texto corrido normal, não flex: com flex, cada palavra/trecho vira
+   um "item" e quebra em colunas em vez de fluir como frase. */
 .hero-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   font-size: 0.9rem;
   color: var(--ink-soft);
 }
@@ -257,13 +256,15 @@ onUnmounted(() => {
 }
 
 .pulse {
+  display: inline-block;
   width: 8px;
   height: 8px;
+  margin-right: 8px;
+  vertical-align: middle;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 0 var(--accent-soft);
   animation: pulse 2.4s ease-out infinite;
-  flex-shrink: 0;
 }
 
 @keyframes pulse {
@@ -411,7 +412,11 @@ onUnmounted(() => {
     flex-direction: column;
   }
 
+  /* Zera o "flex: 1 1 200px" herdado do breakpoint acima: em coluna,
+     esse 200px vira altura mínima do botão, não largura, e ele
+     estufa. */
   .btn {
+    flex: none;
     width: 100%;
   }
 }
