@@ -63,7 +63,7 @@
           <h3 class="technical-title">Outros projetos que desenvolvi</h3>
           <p class="technical-lead">
             Aplicativos e sistemas que construí para praticar e resolver
-            problemas reais — se o seu projeto for além de um site, isso
+            problemas reais, se o seu projeto for além de um site, isso
             também está no meu alcance.
           </p>
         </div>
@@ -118,7 +118,7 @@ const featured = [
     title: 'Dimarte Autosom',
     kind: 'Landing page · Comércio local',
     description:
-      'Página para uma loja de som automotivo, criada para transformar quem chega pelo Google ou pelo Instagram em um orçamento no WhatsApp — sem o cliente precisar ligar ou ir até a loja.',
+      'Página para uma loja de som automotivo, criada para transformar quem chega pelo Google ou pelo Instagram em um orçamento no WhatsApp, sem o cliente precisar ligar ou ir até a loja.',
     delivers: [
       'Pedido de orçamento direto no WhatsApp',
       'Separa quem quer orçamento de quem quer agendar',
@@ -132,7 +132,7 @@ const featured = [
     title: 'Di Vitto Pizzaria',
     kind: 'Landing page · Restaurante local',
     description:
-      'Página para uma pizzaria de forno a lenha em São Paulo, feita para converter quem chega pelo Instagram ou pelo Google direto em um pedido — sem obrigar o cliente a escolher entre WhatsApp e iFood.',
+      'Página para uma pizzaria de forno a lenha em São Paulo, feita para converter quem chega pelo Instagram ou pelo Google direto em um pedido, sem obrigar o cliente a escolher entre WhatsApp e iFood.',
     delivers: [
       'Botões diretos para pedido no WhatsApp e no iFood',
       'Cardápio e localização sempre visíveis',

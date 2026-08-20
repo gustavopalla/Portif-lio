@@ -12,7 +12,7 @@
 
       <p class="contact-lead">
         Me manda uma mensagem contando o que você faz. Eu respondo com uma
-        ideia do que dá para fazer e quanto custa — sem compromisso e sem
+        ideia do que dá para fazer e quanto custa, sem compromisso e sem
         insistência depois.
       </p>
 

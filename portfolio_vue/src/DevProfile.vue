@@ -17,7 +17,7 @@
       <span class="eyebrow">Perfil técnico</span>
       <h1 class="title">Sobre o desenvolvedor</h1>
       <p class="lead">
-        Esta página é o meu perfil profissional detalhado — formação, trajetória
+        Esta página é o meu perfil profissional detalhado, formação, trajetória
         e stack. Se você chegou aqui procurando contratar um site,
         <a href="/">a página principal</a> explica melhor como eu trabalho.
       </p>
@@ -101,9 +101,9 @@ const stack = [
 
 const experience = [
   {
-    period: '2026 — Presente',
+    period: 'Desde 2026',
     role: 'Consultor de Implantação Júnior',
-    company: 'TAB — Think About Business',
+    company: 'TAB, Think About Business',
     description:
       'Suporte e implantação do sistema SE Suite, atendimento técnico a usuários e apoio na configuração de processos e relatórios.',
   },
@@ -113,7 +113,7 @@ const education = [
   {
     title: 'Sistemas de Informação',
     institution: 'UNIP',
-    period: '2024 — 2028',
+    period: '2024–2028',
     status: 'Cursando',
   },
 ]

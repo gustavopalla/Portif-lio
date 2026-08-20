@@ -34,7 +34,7 @@
 
     <div class="container footer-bottom">
       <p class="copyright">
-        © {{ new Date().getFullYear() }} Gustavo Palla — Desenvolvimento web
+        © {{ new Date().getFullYear() }} Gustavo Palla, Desenvolvimento web
       </p>
       <a href="/sobre-o-dev/" class="dev-link">Perfil técnico e formação</a>
     </div>

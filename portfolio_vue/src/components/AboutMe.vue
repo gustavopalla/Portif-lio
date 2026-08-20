@@ -62,7 +62,7 @@ import { WA } from '../lib/contact.js'
 const pillars = [
   {
     title: 'Feita para o celular',
-    text: 'A maioria dos seus clientes vai abrir a página pelo celular. É lá que ela precisa funcionar bem — e é assim que eu construo.',
+    text: 'A maioria dos seus clientes vai abrir a página pelo celular. É lá que ela precisa funcionar bem, e é assim que eu construo.',
     icon: Smartphone,
   },
   {

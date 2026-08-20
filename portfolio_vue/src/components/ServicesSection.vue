@@ -7,7 +7,7 @@
       </h2>
       <p class="section-lead centered">
         Cada negócio precisa de uma coisa diferente. Veja o que está incluído
-        em cada formato e me chame para conversar — o orçamento eu passo no
+        em cada formato e me chame para conversar, o orçamento eu passo no
         privado, depois de entender o que você precisa.
       </p>
 

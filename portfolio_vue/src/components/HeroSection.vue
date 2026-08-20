@@ -26,7 +26,7 @@
 
         <p class="hero-note">
           <span class="pulse" aria-hidden="true"></span>
-          <strong>Orçamento sem compromisso</strong> — resposta no mesmo dia
+          <strong>Orçamento sem compromisso</strong>, resposta no mesmo dia
         </p>
       </div>
 

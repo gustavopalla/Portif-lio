@@ -55,15 +55,15 @@ const toggle = index => {
 const faqs = [
   {
     q: 'Quanto custa? Por que o preço não está no site?',
-    a: 'Porque o valor muda bastante conforme o tamanho do projeto e o que você já tem pronto — quem chega com fotos, textos e logo definidos paga menos que quem precisa de tudo do zero. Colocar um número fixo aqui só criaria expectativa errada dos dois lados. Me manda uma mensagem contando o que você faz e eu te passo o valor fechado no mesmo dia, sem reunião obrigatória e sem enrolação.',
+    a: 'Porque o valor muda bastante conforme o tamanho do projeto e o que você já tem pronto, quem chega com fotos, textos e logo definidos paga menos que quem precisa de tudo do zero. Colocar um número fixo aqui só criaria expectativa errada dos dois lados. Me manda uma mensagem contando o que você faz e eu te passo o valor fechado no mesmo dia, sem reunião obrigatória e sem enrolação.',
   },
   {
     q: 'O que você precisa que eu mande para começar?',
-    a: 'Basicamente o que você já tem: nome e descrição do serviço, fotos do trabalho ou do espaço, e o número de WhatsApp que vai receber os contatos. Logo, textos e depoimentos ajudam, mas não são obrigatórios — se você não tiver, eu escrevo e a gente resolve com o que existe.',
+    a: 'Basicamente o que você já tem: nome e descrição do serviço, fotos do trabalho ou do espaço, e o número de WhatsApp que vai receber os contatos. Logo, textos e depoimentos ajudam, mas não são obrigatórios, se você não tiver, eu escrevo e a gente resolve com o que existe.',
   },
   {
     q: 'Preciso ter um domínio próprio (tipo meunegocio.com.br)?',
-    a: 'Não. A sua página já sai no ar com um endereço gratuito que funciona normalmente e pode ser divulgado no Instagram, no cartão e no Google. Se você quiser um endereço próprio depois, eu configuro — só existe uma taxa anual de registro paga por você direto ao órgão responsável.',
+    a: 'Não. A sua página já sai no ar com um endereço gratuito que funciona normalmente e pode ser divulgado no Instagram, no cartão e no Google. Se você quiser um endereço próprio depois, eu configuro, só existe uma taxa anual de registro paga por você direto ao órgão responsável.',
   },
   {
     q: 'Quanto tempo demora para ficar pronto?',
@@ -79,7 +79,7 @@ const faqs = [
   },
   {
     q: 'Como funciona o pagamento?',
-    a: 'Conversamos primeiro, eu entendo o que você precisa e só depois você decide. O pagamento é combinado direto comigo por PIX, e a gente acerta a forma antes de eu começar — sem contrato de fidelidade e sem mensalidade obrigatória para manter a página no ar.',
+    a: 'Conversamos primeiro, eu entendo o que você precisa e só depois você decide. O pagamento é combinado direto comigo por PIX, e a gente acerta a forma antes de eu começar, sem contrato de fidelidade e sem mensalidade obrigatória para manter a página no ar.',
   },
   {
     q: 'Você atende só em Campinas?',

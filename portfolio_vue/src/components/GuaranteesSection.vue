@@ -6,7 +6,7 @@
         Contratar alguém pela internet dá <em>medo</em>. Eu sei.
       </h2>
       <p class="section-lead centered">
-        Por isso deixo por escrito o que você pode cobrar de mim — antes de
+        Por isso deixo por escrito o que você pode cobrar de mim, antes de
         você pagar qualquer coisa.
       </p>
 
