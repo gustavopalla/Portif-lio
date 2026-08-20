@@ -1,225 +1,167 @@
 <template>
-  <section id="process" class="process">
+  <section id="processo" class="process">
     <div class="container">
-      <span class="eyebrow eyebrow-centered">Metodologia</span>
-      <h2 class="section-title">Como eu trabalho</h2>
-      <p class="section-subtitle">Um processo transparente focado em transformar sua visão em realidade de alta conversão.</p>
+      <span class="eyebrow eyebrow-centered">Como funciona</span>
+      <h2 class="section-title centered">
+        Do primeiro "oi" até a página <em>no ar</em>.
+      </h2>
+      <p class="section-lead centered">
+        Você não precisa entender nada de tecnologia. Eu cuido da parte técnica
+        e te explico tudo em português claro.
+      </p>
 
-      <div class="process-grid">
-        <div 
-          v-for="(step, index) in steps" 
-          :key="step.title" 
-          class="process-card glass-card"
-          :ref="el => stepRefs[index] = el"
+      <ol class="steps">
+        <li
+          v-for="(step, index) in steps"
+          :key="step.title"
+          class="step"
         >
-          <div class="step-number">{{ index + 1 }}</div>
+          <span class="step-number">{{ String(index + 1).padStart(2, '0') }}</span>
           <div class="step-icon">
-            <component :is="step.icon" size="32" />
+            <component :is="step.icon" :size="22" />
           </div>
           <h3 class="step-title">{{ step.title }}</h3>
           <p class="step-description">{{ step.description }}</p>
-          
-          <div v-if="index < steps.length - 1" class="step-connector"></div>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  ClipboardList, 
-  Map, 
-  Layers, 
-  Code2, 
-  CheckCircle2, 
-  Server 
-} from 'lucide-vue-next';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const stepRefs = ref([]);
+import { onMounted } from 'vue'
+import { MessageSquare, PenTool, RefreshCw, Rocket } from 'lucide-vue-next'
+import { animateWhenReady } from '../lib/motion.js'
 
 const steps = [
   {
-    title: 'Briefing',
-    description: 'Entendimento profundo do seu negócio, objetivos e público-alvo para alinhar expectativas.',
-    icon: ClipboardList
+    title: 'A gente conversa',
+    description:
+      'Uma conversa rápida no WhatsApp para eu entender o seu negócio, quem é o seu cliente e o que você quer que ele faça ao entrar na página.',
+    icon: MessageSquare,
   },
   {
-    title: 'Planejamento',
-    description: 'Definição da arquitetura da informação, tecnologias e estratégia de conversão.',
-    icon: Map
+    title: 'Eu crio a página',
+    description:
+      'Escrevo os textos e monto o visual do zero, pensado para o seu tipo de cliente. Você não precisa mandar nada pronto além de fotos e informações do negócio.',
+    icon: PenTool,
   },
   {
-    title: 'Prototipação',
-    description: 'Criação do design visual (UI) e experiência do usuário (UX) com foco na sua marca.',
-    icon: Layers
+    title: 'Você revisa',
+    description:
+      'Te mostro a página funcionando e ajusto o que você quiser: cor, texto, ordem das coisas. Continuo ajustando até você aprovar.',
+    icon: RefreshCw,
   },
   {
-    title: 'Desenvolvimento',
-    description: 'Codificação limpa, rápida e otimizada (SEO) usando as melhores tecnologias do mercado.',
-    icon: Code2
+    title: 'Coloco no ar',
+    description:
+      'Publico a página, configuro o endereço e deixo o botão de WhatsApp funcionando. A partir daí é só divulgar e receber os contatos.',
+    icon: Rocket,
   },
-  {
-    title: 'Aprovação',
-    description: 'Revisão conjunta, ajustes finos e validação total de cada funcionalidade do projeto.',
-    icon: CheckCircle2
-  },
-  {
-    title: 'Hospedagem',
-    description: 'Publicação no ambiente de produção, configuração de domínio e monitoramento inicial.',
-    icon: Server
-  }
-];
+]
 
-onMounted(() => {
-  // Ensure layout is stable
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-    
-    // Explicitly animate from to ensure visibility control
-    gsap.fromTo(".process-card", 
-      { 
-        opacity: 0, 
-        y: 40 
-      },
-      {
-        scrollTrigger: {
-          trigger: ".process-grid",
-          start: "top 90%",
-          toggleActions: "play none none none"
-        },
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out"
-      }
-    );
-  }, 500);
-});
+onMounted(() => animateWhenReady(async () => {
+  const { gsap } = await import('gsap')
+  const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+  gsap.registerPlugin(ScrollTrigger)
+
+  gsap.fromTo(
+    '.step',
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.steps', start: 'top 88%', once: true },
+    }
+  )
+}))
 </script>
 
 <style scoped>
 .process {
-  padding: 120px 0;
-  position: relative;
+  padding: var(--space-section) 0;
 }
 
-.eyebrow-centered {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
+.centered {
+  text-align: center;
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
-.section-subtitle {
-  text-align: center;
+.section-lead {
   color: var(--ink-soft);
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto 80px;
-  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 64px;
 }
 
-.process-grid {
+.steps {
+  list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  position: relative;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  counter-reset: step;
 }
 
-.process-card {
-  padding: 50px 40px;
-  text-align: center;
+.step {
   position: relative;
-  border-radius: 30px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 32px 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
 }
 
 .step-number {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-family: var(--font-display);
-  font-size: 4rem;
-  font-weight: 700;
-  color: var(--ink);
-  opacity: 0.06;
-  line-height: 1;
-  pointer-events: none;
+  top: 22px;
+  right: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
 }
 
 .step-icon {
-  width: 70px;
-  height: 70px;
-  background: var(--accent-soft);
-  border-radius: 20px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
   color: var(--accent);
-  margin-bottom: 24px;
-  transition: all 0.3s ease;
-}
-
-.process-card:hover .step-icon {
-  background: var(--accent);
-  color: var(--on-dark);
+  margin-bottom: 20px;
 }
 
 .step-title {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-  color: var(--ink);
+  font-size: 1.12rem;
+  margin-bottom: 10px;
 }
 
 .step-description {
+  font-size: 0.92rem;
+  line-height: 1.65;
   color: var(--ink-soft);
-  font-size: 1rem;
-  line-height: 1.6;
 }
 
-/* Connectors shown on desktop */
-@media (min-width: 1024px) {
-  .process-grid {
-    grid-template-columns: repeat(3, 1fr);
+@media (max-width: 992px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
-  .process-grid {
+@media (max-width: 560px) {
+  .steps {
     grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-
-  .section-subtitle {
-    margin-bottom: 60px;
-  }
-
-  .process-card {
-    padding: 30px 20px;
-  }
-  
-  .step-number {
-    font-size: 2.5rem;
   }
 }
 </style>

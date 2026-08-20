@@ -1,10 +1,10 @@
 <template>
   <section id="home" class="hero">
-    <canvas ref="grainCanvas" class="grain-canvas"></canvas>
+    <canvas ref="grainCanvas" class="grain-canvas" aria-hidden="true"></canvas>
 
     <div class="container hero-content">
       <div class="hero-text" ref="heroText">
-        <span class="eyebrow">Gustavo Palla · Dev Web · Campinas</span>
+        <span class="eyebrow">Criação de sites · Campinas e região</span>
 
         <h1 class="headline">
           Sites que <em>vendem</em><br />
@@ -12,199 +12,181 @@
         </h1>
 
         <p class="description">
-          Construo landing pages de alta conversão e automações inteligentes
-          para negócios que querem transformar visitantes em clientes reais.
+          Landing pages e sites de alta conversão para advogados, pequenos
+          negócios e autônomos que querem ser encontrados e fechar mais
+          clientes online.
         </p>
 
         <div class="actions">
-          <button @click="openModal" class="btn primary">Iniciar um projeto</button>
-          <a href="/curriculo.pdf" target="_blank" class="btn secondary">Currículo</a>
+          <a :href="WA.hero" target="_blank" rel="noopener" class="btn primary">
+            Iniciar um projeto
+          </a>
+          <a href="#projetos" class="btn secondary">Ver exemplos</a>
         </div>
 
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/gustavopalla/" target="_blank" class="social-icon" aria-label="LinkedIn">
-            <Linkedin size="20" />
-          </a>
-          <a href="https://github.com/gustavopalla" target="_blank" class="social-icon" aria-label="GitHub">
-            <Github size="20" />
-          </a>
-        </div>
+        <p class="hero-note">
+          <span class="pulse" aria-hidden="true"></span>
+          <strong>Orçamento sem compromisso</strong> — resposta no mesmo dia
+        </p>
       </div>
 
-      <div class="hero-code" ref="codeBlock">
-        <div class="code-window">
-          <div class="window-header">
-            <div class="dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <span class="filename">developer.js</span>
+      <div class="hero-visual" ref="heroVisual">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">seunegocio.com.br</span>
           </div>
-          <div class="code-content">
-            <div class="line-numbers">
-              <span v-for="i in 14" :key="i">{{ i }}</span>
-            </div>
-            <pre><code ref="typingCode"></code></pre>
+          <img
+            src="/dimarte.png"
+            alt="Exemplo de landing page desenvolvida por Gustavo Palla"
+            class="browser-shot"
+            width="1345"
+            height="646"
+            loading="eager"
+          />
+        </div>
+
+        <div class="float-card whats">
+          <MessageCircle :size="16" class="float-icon" />
+          <div>
+            <span class="float-label">Contato direto</span>
+            <span class="float-value">Botão de WhatsApp</span>
+          </div>
+        </div>
+
+        <div class="float-card speed">
+          <Zap :size="16" class="float-icon" />
+          <div>
+            <span class="float-label">Carrega rápido</span>
+            <span class="float-value">Feito para celular</span>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="scroll-hint">
-      <span>Role para ver mais</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, inject } from 'vue';
-import { Linkedin, Github } from 'lucide-vue-next';
-import { gsap } from 'gsap';
-import { TextPlugin } from 'gsap/TextPlugin';
+import { ref, onMounted, onUnmounted } from 'vue'
+import { MessageCircle, Zap } from 'lucide-vue-next'
+import { WA } from '../lib/contact.js'
+import { animateWhenReady } from '../lib/motion.js'
 
-gsap.registerPlugin(TextPlugin);
-
-const heroText = ref(null);
-const codeBlock = ref(null);
-const typingCode = ref(null);
-const grainCanvas = ref(null);
-
-const codeString = `const developer = {
-  name: 'Gustavo Palla',
-  focus: 'conversion & automation',
-  stack: [
-    'Vue.js', 'Vite',
-    'Node.js', 'Supabase',
-    'Meta Cloud API'
-  ],
-  status: true // available
-};`;
-
-const openModal = inject('openContactModal');
+const heroText = ref(null)
+const heroVisual = ref(null)
+const grainCanvas = ref(null)
 
 // ---------------------------------------------------------------
-// Film-grain background: idle noise that quietly breathes, and
-// gets sharper/denser near the cursor for a subtle interactive feel.
+// Fundo com grão de filme: ruído sutil que fica mais denso perto do
+// cursor. Todo o trabalho acontece em onMounted, então não roda na
+// pré-renderização (o HTML gerado sai com o conteúdo real).
 // ---------------------------------------------------------------
-let ctx;
-let width = 0;
-let height = 0;
-let rafId = null;
-let sectionEl = null;
-let pointer = { x: -9999, y: -9999, active: 0 };
+let ctx
+let width = 0
+let height = 0
+let rafId = null
+let sectionEl = null
+const pointer = { x: -9999, y: -9999, active: 0 }
 
-const GRAIN_SCALE = 3; // render at 1/3 resolution, upscaled by CSS pixel rendering
+const GRAIN_SCALE = 3
 
 function resizeCanvas() {
-  if (!grainCanvas.value || !sectionEl) return;
-  const rect = sectionEl.getBoundingClientRect();
-  width = Math.max(1, Math.floor(rect.width / GRAIN_SCALE));
-  height = Math.max(1, Math.floor(rect.height / GRAIN_SCALE));
-  grainCanvas.value.width = width;
-  grainCanvas.value.height = height;
+  if (!grainCanvas.value || !sectionEl) return
+  const rect = sectionEl.getBoundingClientRect()
+  width = Math.max(1, Math.floor(rect.width / GRAIN_SCALE))
+  height = Math.max(1, Math.floor(rect.height / GRAIN_SCALE))
+  grainCanvas.value.width = width
+  grainCanvas.value.height = height
 }
 
 function handlePointerMove(e) {
-  const rect = sectionEl.getBoundingClientRect();
-  pointer.x = ((e.clientX - rect.left) / rect.width) * width;
-  pointer.y = ((e.clientY - rect.top) / rect.height) * height;
+  const rect = sectionEl.getBoundingClientRect()
+  pointer.x = ((e.clientX - rect.left) / rect.width) * width
+  pointer.y = ((e.clientY - rect.top) / rect.height) * height
 }
 
 function handlePointerEnter() {
-  gsap.to(pointer, { active: 1, duration: 0.6, ease: 'power2.out' });
+  pointer.active = 1
 }
 
 function handlePointerLeave() {
-  gsap.to(pointer, { active: 0, duration: 0.8, ease: 'power2.out' });
-  pointer.x = -9999;
-  pointer.y = -9999;
+  pointer.active = 0
+  pointer.x = -9999
+  pointer.y = -9999
 }
 
 function drawGrain() {
   if (ctx && width && height) {
-    const imageData = ctx.createImageData(width, height);
-    const buffer = imageData.data;
-    const radius = width * 0.35;
+    const imageData = ctx.createImageData(width, height)
+    const buffer = imageData.data
+    const radius = width * 0.35
 
     for (let i = 0; i < buffer.length; i += 4) {
-      const px = (i / 4) % width;
-      const py = Math.floor(i / 4 / width);
-      let boost = 0;
+      const px = (i / 4) % width
+      const py = Math.floor(i / 4 / width)
+      let boost = 0
       if (pointer.active > 0.01) {
-        const dx = px - pointer.x;
-        const dy = py - pointer.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        boost = Math.max(0, 1 - dist / radius) * pointer.active;
+        const dx = px - pointer.x
+        const dy = py - pointer.y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        boost = Math.max(0, 1 - dist / radius) * pointer.active
       }
 
-      const base = 8 + boost * 30; // grain intensity
-      const value = Math.random() * base;
-      const alpha = (10 + boost * 26) * (Math.random() * 0.6 + 0.7);
+      const base = 8 + boost * 30
+      const value = Math.random() * base
+      const alpha = (10 + boost * 26) * (Math.random() * 0.6 + 0.7)
 
-      buffer[i] = 21;
-      buffer[i + 1] = 19;
-      buffer[i + 2] = 15;
-      buffer[i + 3] = value + alpha;
+      buffer[i] = 21
+      buffer[i + 1] = 19
+      buffer[i + 2] = 15
+      buffer[i + 3] = value + alpha
     }
 
-    ctx.putImageData(imageData, 0, 0);
+    ctx.putImageData(imageData, 0, 0)
   }
-  rafId = requestAnimationFrame(drawGrain);
+  rafId = requestAnimationFrame(drawGrain)
 }
 
 onMounted(() => {
-  sectionEl = grainCanvas.value.closest('.hero');
-  ctx = grainCanvas.value.getContext('2d', { willReadFrequently: true });
-  resizeCanvas();
-  drawGrain();
+  sectionEl = grainCanvas.value.closest('.hero')
+  ctx = grainCanvas.value.getContext('2d', { willReadFrequently: true })
+  resizeCanvas()
 
-  window.addEventListener('resize', resizeCanvas);
-  sectionEl.addEventListener('pointermove', handlePointerMove);
-  sectionEl.addEventListener('pointerenter', handlePointerEnter);
-  sectionEl.addEventListener('pointerleave', handlePointerLeave);
+  window.addEventListener('resize', resizeCanvas)
+  sectionEl.addEventListener('pointermove', handlePointerMove)
+  sectionEl.addEventListener('pointerenter', handlePointerEnter)
+  sectionEl.addEventListener('pointerleave', handlePointerLeave)
 
-  // Hero Text Animation
-  gsap.from(heroText.value.children, {
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'power3.out'
-  });
+  animateWhenReady(async () => {
+    drawGrain()
 
-  // Code Block Animation
-  gsap.from(codeBlock.value, {
-    x: 50,
-    opacity: 0,
-    duration: 1,
-    delay: 0.5,
-    ease: 'power3.out'
-  });
-
-  // Typing Animation with preserved whitespace
-  gsap.to(typingCode.value, {
-    duration: 3,
-    text: {
-      value: codeString,
-      preserveSpaces: true,
-      rtl: false
-    },
-    delay: 1.5,
-    ease: 'none'
-  });
-});
+    const { gsap } = await import('gsap')
+    gsap.from(heroText.value.children, {
+      y: 24,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.09,
+      ease: 'power3.out',
+    })
+    gsap.from(heroVisual.value, {
+      y: 30,
+      opacity: 0,
+      duration: 0.9,
+      delay: 0.25,
+      ease: 'power3.out',
+    })
+  })
+})
 
 onUnmounted(() => {
-  if (rafId) cancelAnimationFrame(rafId);
-  window.removeEventListener('resize', resizeCanvas);
+  if (rafId) cancelAnimationFrame(rafId)
+  window.removeEventListener('resize', resizeCanvas)
   if (sectionEl) {
-    sectionEl.removeEventListener('pointermove', handlePointerMove);
-    sectionEl.removeEventListener('pointerenter', handlePointerEnter);
-    sectionEl.removeEventListener('pointerleave', handlePointerLeave);
+    sectionEl.removeEventListener('pointermove', handlePointerMove)
+    sectionEl.removeEventListener('pointerenter', handlePointerEnter)
+    sectionEl.removeEventListener('pointerleave', handlePointerLeave)
   }
-});
+})
 </script>
 
 <style scoped>
@@ -212,7 +194,7 @@ onUnmounted(() => {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 80px;
+  padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
   background: var(--bg);
@@ -231,8 +213,8 @@ onUnmounted(() => {
 
 .hero-content {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -243,140 +225,158 @@ onUnmounted(() => {
 }
 
 .headline {
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.3rem, 4.6vw, 3.75rem);
   line-height: 1.05;
   margin-bottom: 24px;
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   color: var(--ink-soft);
   max-width: 480px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .actions {
   display: flex;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 14px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
-.social-links {
-  display: flex;
-  gap: 20px;
-}
-
-.social-icon {
-  color: var(--muted);
-  transition: color 0.25s ease, transform 0.25s ease;
+.hero-note {
   display: inline-flex;
-}
-
-.social-icon:hover {
-  color: var(--accent);
-  transform: translateY(-2px);
-}
-
-/* Code Window — intentional dark panel, contrasts the paper background */
-.code-window {
-  width: 100%;
-  max-width: 550px;
-  aspect-ratio: 4/3;
-  display: flex;
-  flex-direction: column;
-  background: var(--dark-panel);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-}
-
-.window-header {
-  height: 44px;
-  background: var(--dark-panel-alt);
-  display: flex;
   align-items: center;
-  padding: 0 16px;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.hero-note strong {
+  color: var(--ink);
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-soft);
+  animation: pulse 2.4s ease-out infinite;
   flex-shrink: 0;
 }
 
-.dots {
-  display: flex;
-  gap: 8px;
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 90, 43, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 90, 43, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 90, 43, 0); }
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+/* --- Mockup de navegador: mostra resultado visual, não código --- */
+.hero-visual {
+  position: relative;
 }
 
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
-
-.filename {
-  margin-left: 20px;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--on-dark-soft);
-}
-
-.code-content {
-  flex: 1;
-  padding: 24px;
-  display: flex;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
+.browser {
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
 }
 
-.line-numbers {
-  display: flex;
-  flex-direction: column;
-  padding-right: 20px;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(243, 241, 234, 0.25);
-  text-align: right;
-  user-select: none;
-}
-
-pre {
-  margin-left: 20px;
-  color: var(--on-dark);
-}
-
-code {
-  color: #7fd8c9;
-  white-space: pre;
-  display: block;
-}
-
-.scroll-hint {
-  position: absolute;
-  bottom: 32px;
-  right: 40px;
+.browser-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  z-index: 1;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  gap: 7px;
+  padding: 0 16px;
+  height: 40px;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
 }
 
-.scroll-line {
-  width: 1px;
-  height: 32px;
-  background: linear-gradient(var(--muted), transparent);
+.browser-bar .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.url {
+  margin-left: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: var(--surface);
+  border-radius: 100px;
+  padding: 4px 14px;
+  border: 1px solid var(--border);
+}
+
+.browser-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.float-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.float-card div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.float-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.float-label {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+}
+
+.float-value {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Ancorados sobre o conteúdo do mockup, nunca sobre a barra de
+   endereço — cobrir a URL tira justamente a leitura de "site real". */
+.whats {
+  top: 24%;
+  left: -34px;
+}
+
+.speed {
+  bottom: -20px;
+  right: -22px;
 }
 
 @media (max-width: 992px) {
+  .hero {
+    padding: 110px 0 64px;
+    min-height: auto;
+  }
+
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 40px;
+    gap: 48px;
   }
 
   .hero-text {
@@ -386,48 +386,33 @@ code {
   }
 
   .description {
-    margin: 0 auto 36px;
-  }
-
-  .hero-code {
-    display: flex;
-    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .actions {
-    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    gap: 12px;
   }
 
   .btn {
-    width: 100%;
-    text-align: center;
+    flex: 1 1 200px;
   }
 
-  .scroll-hint {
+  /* Os cards flutuantes saem do fluxo em telas pequenas para não
+     cobrir o mockup nem estourar a largura da página. */
+  .float-card {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .code-content {
-    padding: 16px;
-    font-size: 0.75rem;
-    overflow-x: auto;
+  .actions {
+    flex-direction: column;
   }
 
-  pre {
-    margin-left: 10px;
-  }
-
-  .line-numbers {
-    padding-right: 10px;
-  }
-
-  .code-window {
-    aspect-ratio: auto;
-    height: 300px;
+  .btn {
+    width: 100%;
   }
 }
 </style>

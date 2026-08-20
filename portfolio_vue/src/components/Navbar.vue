@@ -1,26 +1,33 @@
 <template>
   <nav :class="{ scrolled: isScrolled }" class="navbar">
     <div class="container nav-content">
-      <a href="#home" class="logo">
+      <a href="#home" class="logo" @click="closeMenu">
         <span class="logo-dot"></span>
         Gustavo Palla
       </a>
 
       <div class="nav-links" :class="{ 'mobile-active': isMobileMenuOpen }">
-        <a href="#home" @click="closeMenu">Início</a>
-        <a href="#about" @click="closeMenu">Sobre</a>
-        <a href="#skills" @click="closeMenu">Skills</a>
-        <a href="#process" @click="closeMenu">Processo</a>
-        <a href="#experience" @click="closeMenu">Experiência</a>
-        <a href="#projects" @click="closeMenu">Projetos</a>
-        <button @click="handleContactClick" class="cta-button">Contato</button>
+        <a href="#projetos" @click="closeMenu">Exemplos</a>
+        <a href="#processo" @click="closeMenu">Como funciona</a>
+        <a href="#servicos" @click="closeMenu">Serviços</a>
+        <a href="#duvidas" @click="closeMenu">Dúvidas</a>
+        <a
+          :href="WA.navbar"
+          target="_blank"
+          rel="noopener"
+          class="cta-button"
+          @click="closeMenu"
+        >
+          Fazer orçamento
+        </a>
       </div>
 
       <button
         class="mobile-toggle"
         :class="{ open: isMobileMenuOpen }"
-        @click="isMobileMenuOpen = !isMobileMenuOpen"
+        :aria-expanded="isMobileMenuOpen"
         aria-label="Abrir menu"
+        @click="isMobileMenuOpen = !isMobileMenuOpen"
       >
         <span></span>
         <span></span>
@@ -31,33 +38,27 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, inject } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue'
+import { WA } from '../lib/contact.js'
 
-const openModal = inject('openContactModal');
-
-const isScrolled = ref(false);
-const isMobileMenuOpen = ref(false);
+const isScrolled = ref(false)
+const isMobileMenuOpen = ref(false)
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50;
-};
+  isScrolled.value = window.scrollY > 50
+}
 
 const closeMenu = () => {
-  isMobileMenuOpen.value = false;
-};
-
-const handleContactClick = () => {
-  closeMenu();
-  openModal();
-};
+  isMobileMenuOpen.value = false
+}
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <style scoped>
@@ -75,7 +76,7 @@ onUnmounted(() => {
 }
 
 .navbar.scrolled {
-  background: rgba(250, 248, 243, 0.85);
+  background: rgba(250, 248, 243, 0.86);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   height: 70px;
@@ -110,7 +111,7 @@ onUnmounted(() => {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 30px;
 }
 
 .nav-links a {
@@ -128,14 +129,10 @@ onUnmounted(() => {
 .cta-button {
   background: var(--ink);
   color: var(--on-dark) !important;
-  padding: 10px 22px;
+  padding: 11px 22px;
   border-radius: var(--radius-md);
-  transition: all 0.3s ease !important;
-  border: none;
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
+  font-weight: 600 !important;
+  transition: all 0.3s ease;
 }
 
 .cta-button:hover {
@@ -177,24 +174,27 @@ onUnmounted(() => {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .mobile-toggle {
     display: flex;
+    z-index: 1002;
   }
 
   .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
+    width: 82%;
+    max-width: 340px;
     height: 100vh;
     background: var(--bg);
     flex-direction: column;
     justify-content: center;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-left: 1px solid var(--border);
     padding: 40px;
     box-shadow: var(--shadow-lg);
+    z-index: 1001;
   }
 
   .nav-links.mobile-active {
