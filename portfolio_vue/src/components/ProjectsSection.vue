@@ -142,6 +142,20 @@ const featured = [
     url: 'https://divittopizzaria.vercel.app/',
     image: '/divitto.jpg',
   },
+  {
+    title: 'Flow Taquaral',
+    kind: 'Landing page · Restaurante local',
+    description:
+      'Página para uma casa de comida saudável em Campinas (crepes, sucos e bowls), pensada para quem descobre o Flow pelo Instagram decidir na hora entre pedir pelo WhatsApp ou pelo iFood.',
+    delivers: [
+      'Botões diretos para pedido no WhatsApp e no iFood',
+      'Cardápio com fotos reais dos pratos',
+      'Depoimentos de clientes em destaque',
+      'Abre rápido e se ajusta à tela do celular',
+    ],
+    url: 'https://sejaflow.vercel.app/',
+    image: '/flow.jpg',
+  },
 ]
 
 // Projetos técnicos — ficam fora do fluxo principal de venda.
