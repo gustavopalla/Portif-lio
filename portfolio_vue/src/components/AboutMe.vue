@@ -34,7 +34,7 @@
       </div>
 
       <aside class="about-card">
-        <div class="avatar">GP</div>
+        <img src="/gustavo.jpg" alt="Gustavo Palla" class="avatar" width="76" height="76" />
         <p class="card-name">Gustavo Palla</p>
         <p class="card-role">Desenvolvedor web · Campinas, SP</p>
 
@@ -156,18 +156,13 @@ const facts = [
 }
 
 .avatar {
+  display: block;
   width: 76px;
   height: 76px;
   margin: 0 auto 18px;
   border-radius: 50%;
-  background: var(--dark-panel);
-  color: var(--on-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 600;
+  object-fit: cover;
+  border: 1px solid var(--border);
 }
 
 .card-name {
