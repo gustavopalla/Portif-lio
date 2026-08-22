@@ -1,7 +1,6 @@
 <template>
   <section id="garantias" class="guarantees">
     <div class="container">
-      <span class="eyebrow eyebrow-centered">O que eu garanto</span>
       <h2 class="section-title centered">
         Contratar alguém pela internet dá <em>medo</em>. Eu sei.
       </h2>

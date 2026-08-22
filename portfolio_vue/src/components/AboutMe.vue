@@ -2,7 +2,6 @@
   <section id="sobre" class="about">
     <div class="container about-grid">
       <div class="about-text">
-        <span class="eyebrow">Quem vai fazer o seu site</span>
         <h2 class="section-title">
           Você fala <em>direto comigo</em>.<br />
           Do orçamento ao site no ar.
@@ -96,11 +95,6 @@ const facts = [
   grid-template-columns: 1.35fr 1fr;
   gap: 64px;
   align-items: start;
-}
-
-.eyebrow {
-  display: flex;
-  margin-bottom: 16px;
 }
 
 .section-title {

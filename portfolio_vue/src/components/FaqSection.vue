@@ -2,7 +2,6 @@
   <section id="duvidas" class="faq">
     <div class="container faq-grid">
       <div class="faq-intro">
-        <span class="eyebrow">Perguntas frequentes</span>
         <h2 class="section-title">
           As dúvidas que <em>todo mundo</em> tem.
         </h2>
@@ -103,11 +102,6 @@ const faqs = [
 .faq-intro {
   position: sticky;
   top: 100px;
-}
-
-.eyebrow {
-  display: flex;
-  margin-bottom: 16px;
 }
 
 .section-title {

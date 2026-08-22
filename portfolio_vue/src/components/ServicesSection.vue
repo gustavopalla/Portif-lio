@@ -1,7 +1,6 @@
 <template>
   <section id="servicos" class="services">
     <div class="container">
-      <span class="eyebrow eyebrow-centered">O que eu faço</span>
       <h2 class="section-title centered">
         Escolha o tamanho do <em>seu projeto</em>.
       </h2>

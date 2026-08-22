@@ -1,7 +1,6 @@
 <template>
   <section id="projetos" class="projects">
     <div class="container">
-      <span class="eyebrow">Exemplos do meu trabalho</span>
       <h2 class="section-title">
         Páginas feitas para <em>trazer cliente</em>.
       </h2>
@@ -223,11 +222,6 @@ onMounted(() => animateWhenReady(async () => {
 .projects {
   padding: var(--space-section) 0;
   background: var(--bg-alt);
-}
-
-.eyebrow {
-  display: flex;
-  margin-bottom: 16px;
 }
 
 .section-title {

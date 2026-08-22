@@ -1,7 +1,6 @@
 <template>
   <section id="processo" class="process">
     <div class="container">
-      <span class="eyebrow eyebrow-centered">Como funciona</span>
       <h2 class="section-title centered">
         Do primeiro "oi" até a página <em>no ar</em>.
       </h2>

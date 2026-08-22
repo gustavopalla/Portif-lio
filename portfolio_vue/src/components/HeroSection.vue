@@ -4,8 +4,6 @@
 
     <div class="container hero-content">
       <div class="hero-text" ref="heroText">
-        <span class="eyebrow">Criação de sites · Campinas e região</span>
-
         <h1 class="headline">
           Sites que <em>vendem</em><br />
           enquanto você dorme.
@@ -218,10 +216,6 @@ onUnmounted(() => {
   align-items: center;
   position: relative;
   z-index: 1;
-}
-
-.eyebrow {
-  margin-bottom: 20px;
 }
 
 .headline {

@@ -14,7 +14,6 @@
     </header>
 
     <main class="container content">
-      <span class="eyebrow">Perfil técnico</span>
       <h1 class="title">Sobre o desenvolvedor</h1>
       <p class="lead">
         Esta página é o meu perfil profissional detalhado, formação, trajetória
@@ -175,11 +174,6 @@ const education = [
   flex: 1;
   padding: 72px 24px 96px;
   max-width: 820px;
-}
-
-.eyebrow {
-  display: flex;
-  margin-bottom: 16px;
 }
 
 .title {
