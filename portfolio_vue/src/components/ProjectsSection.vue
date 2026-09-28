@@ -155,6 +155,20 @@ const featured = [
     url: 'https://sejaflow.vercel.app/',
     image: '/flow.jpg',
   },
+  {
+    title: 'Jonas Vitorino',
+    kind: 'Portfólio · Videomaker',
+    description:
+      'Portfólio para um videomaker de Campinas, especializado em cobertura de eventos ao vivo, feito para transformar quem visita a página em um contato direto pelo WhatsApp.',
+    delivers: [
+      'Pedido de orçamento direto no WhatsApp',
+      'Vitrine do portfólio de vídeos e trabalhos entregues',
+      'Visual escuro e cinematográfico, alinhado ao trabalho',
+      'Abre rápido e se ajusta à tela do celular',
+    ],
+    url: 'https://www.jonasvitorino.com.br/',
+    image: '/jonasvitorino.jpg',
+  },
 ]
 
 // Projetos técnicos — ficam fora do fluxo principal de venda.
