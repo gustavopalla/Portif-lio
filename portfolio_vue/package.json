@@ -13,7 +13,9 @@
     "gerar-link": "node scripts/generate-review-link.js",
     "pendentes": "node scripts/list-pending-reviews.js",
     "aprovar": "node scripts/approve-review.js",
-    "recusar": "node scripts/reject-review.js"
+    "recusar": "node scripts/reject-review.js",
+    "depoimentos": "node scripts/list-testimonials.js",
+    "excluir": "node scripts/delete-testimonial.js"
   },
   "dependencies": {
     "gsap": "^3.14.2",

@@ -37,6 +37,7 @@ const testimonials = existsSync(TESTIMONIALS_FILE)
   ? JSON.parse(readFileSync(TESTIMONIALS_FILE, 'utf-8'))
   : []
 testimonials.push({
+  id: review.id,
   name: review.name,
   role: review.role || 'Cliente',
   initial: review.name.trim().charAt(0).toUpperCase(),
