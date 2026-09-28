@@ -6,10 +6,12 @@ import { createSSRApp } from 'vue'
 import { renderToString } from 'vue/server-renderer'
 import App from './App.vue'
 import DevProfile from './DevProfile.vue'
+import AvaliarForm from './AvaliarForm.vue'
 
 const pages = {
   main: App,
   devProfile: DevProfile,
+  avaliar: AvaliarForm,
 }
 
 /**

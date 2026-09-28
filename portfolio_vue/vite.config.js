@@ -7,11 +7,12 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     rollupOptions: {
-      // Duas páginas estáticas: a home (venda) e o perfil técnico,
-      // que fica fora do fluxo comercial.
+      // Páginas estáticas: a home (venda), o perfil técnico (fora do
+      // fluxo comercial) e a página de avaliação (link privado por token).
       input: {
         main: resolve(__dirname, 'index.html'),
         devProfile: resolve(__dirname, 'sobre-o-dev/index.html'),
+        avaliar: resolve(__dirname, 'avaliar/index.html'),
       },
     },
   },

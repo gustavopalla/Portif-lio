@@ -14,6 +14,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const PAGES = [
   { key: 'main', html: 'dist/index.html' },
   { key: 'devProfile', html: 'dist/sobre-o-dev/index.html' },
+  { key: 'avaliar', html: 'dist/avaliar/index.html' },
 ]
 
 const { render } = await import(

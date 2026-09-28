@@ -20,9 +20,8 @@
       </div>
 
       <!--
-        Depoimentos reais entram aqui. Basta preencher o array `testimonials`
-        no script com { name, role, initial, text, rating } que a lista
-        aparece automaticamente — nada mais precisa ser alterado.
+        Depoimentos reais entram aqui automaticamente assim que uma
+        avaliação é aprovada (npm run aprovar) — ver src/data/testimonials.json.
       -->
       <div v-if="testimonials.length" class="testimonials">
         <h3 class="testimonials-title">O que os clientes dizem</h3>
@@ -57,6 +56,7 @@
 
 <script setup>
 import { Clock, RefreshCw, MessageSquare, KeyRound, Star } from 'lucide-vue-next'
+import testimonials from '../data/testimonials.json'
 
 // Promessas que dependem só de mim — nada aqui depende de histórico
 // de cliente, então tudo é verificável e honesto desde o primeiro dia.
@@ -83,10 +83,8 @@ const guarantees = [
   },
 ]
 
-// Ainda sem depoimentos publicados — a seção acima cobre a prova por
-// enquanto. Preencher assim que o primeiro cliente autorizar:
-// { name: 'Nome', role: 'Negócio', initial: 'N', text: '...', rating: 5 }
-const testimonials = []
+// Depoimentos reais, aprovados via "npm run aprovar" a partir de
+// avaliações enviadas pelos clientes em /avaliar/. Ver src/data/testimonials.json.
 </script>
 
 <style scoped>

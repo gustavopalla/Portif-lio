@@ -9,7 +9,11 @@
     "build:client": "vite build",
     "build:ssr": "vite build --ssr src/entry-server.js --outDir dist-ssr",
     "prerender": "node scripts/prerender.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gerar-link": "node scripts/generate-review-link.js",
+    "pendentes": "node scripts/list-pending-reviews.js",
+    "aprovar": "node scripts/approve-review.js",
+    "recusar": "node scripts/reject-review.js"
   },
   "dependencies": {
     "gsap": "^3.14.2",
