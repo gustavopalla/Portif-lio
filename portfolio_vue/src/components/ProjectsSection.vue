@@ -17,22 +17,36 @@
           class="featured-card"
           :ref="el => featuredRefs[index] = el"
         >
-          <div class="featured-visual">
-            <div class="browser">
-              <div class="browser-bar">
-                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              </div>
-              <img
-                :src="project.image"
-                :alt="`Página do projeto ${project.title}`"
-                class="shot"
-                loading="lazy"
-              />
-            </div>
-          </div>
+          <a
+            :href="isCase(project) ? `/projetos/${project.slug}/` : project.url"
+            :target="isCase(project) ? undefined : '_blank'"
+            :rel="isCase(project) ? undefined : 'noopener'"
+            class="featured-visual"
+            :aria-label="isCase(project)
+              ? `Ver detalhes do projeto ${project.title}`
+              : `Abrir a página ${project.title}`"
+          >
+            <img
+              :src="project.image"
+              :alt="`Página do projeto ${project.title}`"
+              class="shot"
+              loading="lazy"
+            />
+            <span class="visit-pill">
+              {{ isCase(project) ? 'Ver detalhes' : 'Abrir no ar' }} <ArrowUpRight :size="16" />
+            </span>
+          </a>
 
           <div class="featured-details">
-            <span class="kind">{{ project.kind }}</span>
+            <span class="number" aria-hidden="true">
+              {{ String(index + 1).padStart(2, '0') }}
+            </span>
+            <p class="meta">
+              <span class="status" :class="project.status">
+                {{ isCase(project) ? 'Case' : 'Projeto de demonstração' }}
+              </span>
+              <span class="kind">{{ project.kind }}</span>
+            </p>
             <h3 class="featured-title">{{ project.title }}</h3>
             <p class="featured-description">{{ project.description }}</p>
 
@@ -43,15 +57,27 @@
               </li>
             </ul>
 
-            <a
-              :href="project.url"
-              target="_blank"
-              rel="noopener"
-              class="btn primary featured-cta"
-            >
-              Abrir a página no ar
-              <ExternalLink :size="17" />
-            </a>
+            <div class="featured-actions">
+              <!-- Só o case tem página de detalhes; as demos vão direto ao site. -->
+              <a
+                v-if="isCase(project)"
+                :href="`/projetos/${project.slug}/`"
+                class="btn primary"
+              >
+                Saber mais sobre o projeto
+                <ArrowRight :size="17" />
+              </a>
+              <a
+                :href="project.url"
+                target="_blank"
+                rel="noopener"
+                class="btn"
+                :class="isCase(project) ? 'ghost' : 'primary'"
+              >
+                Abrir a página no ar
+                <ExternalLink :size="16" />
+              </a>
+            </div>
           </div>
         </article>
       </div>
@@ -106,70 +132,12 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { Check, ExternalLink, ArrowUpRight } from 'lucide-vue-next'
+import { Check, ExternalLink, ArrowUpRight, ArrowRight } from 'lucide-vue-next'
 import { animateWhenReady } from '../lib/motion.js'
+import { featured } from '../data/projects.js'
 
 const featuredRefs = ref([])
-
-// Página do tipo que eu vendo — é ela que carrega a prova social.
-const featured = [
-  {
-    title: 'Dimarte Autosom',
-    kind: 'Landing page · Comércio local',
-    description:
-      'Página para uma loja de som automotivo, criada para transformar quem chega pelo Google ou pelo Instagram em um orçamento no WhatsApp, sem o cliente precisar ligar ou ir até a loja.',
-    delivers: [
-      'Pedido de orçamento direto no WhatsApp',
-      'Separa quem quer orçamento de quem quer agendar',
-      'Preparada para aparecer nas buscas do Google',
-      'Abre rápido e se ajusta à tela do celular',
-    ],
-    url: 'https://dimarteautosom.vercel.app/',
-    image: '/dimarte.png',
-  },
-  {
-    title: 'Di Vitto Pizzaria',
-    kind: 'Landing page · Restaurante local',
-    description:
-      'Página para uma pizzaria de forno a lenha em São Paulo, feita para converter quem chega pelo Instagram ou pelo Google direto em um pedido, sem obrigar o cliente a escolher entre WhatsApp e iFood.',
-    delivers: [
-      'Botões diretos para pedido no WhatsApp e no iFood',
-      'Cardápio e localização sempre visíveis',
-      'Fotos e vídeo do forno a lenha em destaque',
-      'Abre rápido e se ajusta à tela do celular',
-    ],
-    url: 'https://divittopizzaria.vercel.app/',
-    image: '/divitto.jpg',
-  },
-  {
-    title: 'Flow Taquaral',
-    kind: 'Landing page · Restaurante local',
-    description:
-      'Página para uma casa de comida saudável em Campinas (crepes, sucos e bowls), pensada para quem descobre o Flow pelo Instagram decidir na hora entre pedir pelo WhatsApp ou pelo iFood.',
-    delivers: [
-      'Botões diretos para pedido no WhatsApp e no iFood',
-      'Cardápio com fotos reais dos pratos',
-      'Depoimentos de clientes em destaque',
-      'Abre rápido e se ajusta à tela do celular',
-    ],
-    url: 'https://sejaflow.vercel.app/',
-    image: '/flow.jpg',
-  },
-  {
-    title: 'Jonas Vitorino',
-    kind: 'Portfólio · Videomaker',
-    description:
-      'Portfólio para um videomaker de Campinas, especializado em cobertura de eventos ao vivo, feito para transformar quem visita a página em um contato direto pelo WhatsApp.',
-    delivers: [
-      'Pedido de orçamento direto no WhatsApp',
-      'Vitrine do portfólio de vídeos e trabalhos entregues',
-      'Visual escuro e cinematográfico, alinhado ao trabalho',
-      'Abre rápido e se ajusta à tela do celular',
-    ],
-    url: 'https://www.jonasvitorino.com.br/',
-    image: '/jonasvitorino.jpg',
-  },
-]
+const isCase = project => project.status === 'case'
 
 // Projetos técnicos — ficam fora do fluxo principal de venda.
 const technical = [
@@ -233,94 +201,158 @@ onMounted(() => animateWhenReady(async () => {
 </script>
 
 <style scoped>
+/* Seção escura: quebra o ritmo claro do resto da página e dá peso
+   aos projetos, que são a prova principal do que eu vendo. */
 .projects {
-  padding: var(--space-section) 0;
-  background: var(--bg-alt);
+  padding: calc(var(--space-section) + 16px) 0;
+  background: var(--dark-panel);
+  color: var(--on-dark-soft);
 }
 
 .section-title {
-  margin-bottom: 16px;
+  color: var(--on-dark);
+  font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+  margin-bottom: 20px;
 }
 
 .section-lead {
-  color: var(--ink-soft);
+  color: var(--on-dark-soft);
+  font-size: 1.1rem;
   max-width: 560px;
-  margin-bottom: 56px;
+  margin-bottom: 88px;
 }
 
 /* --- Destaque --- */
 .featured-list {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 112px;
 }
 
 .featured-card {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 64px;
   align-items: center;
-  padding: 40px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
 }
 
-.browser {
-  border-radius: var(--radius-md);
+/* Layout alternado: a imagem troca de lado a cada projeto */
+.featured-card:nth-child(even) {
+  grid-template-columns: 1fr 1.55fr;
+}
+
+.featured-card:nth-child(even) .featured-visual {
+  order: 2;
+}
+
+/* Proporção fixa + ancorada no topo: todas as capas ficam do mesmo
+   tamanho, mesmo com screenshots de proporções diferentes. */
+.featured-visual {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--bg-alt);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(243, 241, 234, 0.1);
+  background: var(--dark-panel-alt);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
 }
 
-.browser-bar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  height: 32px;
-  padding: 0 13px;
-  background: var(--bg-alt);
-  border-bottom: 1px solid var(--border);
-}
-
-.browser-bar .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--border-strong);
-}
-
-/* A imagem mantém a proporção real e ancora no topo: evita o corte
-   estranho que acontecia quando a screenshot larga era esticada
-   para preencher uma coluna estreita. */
 .shot {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.featured-visual:hover .shot,
+.featured-visual:focus-visible .shot {
+  transform: scale(1.05);
+}
+
+.visit-pill {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 100px;
+  background: var(--on-dark);
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.featured-visual:hover .visit-pill,
+.featured-visual:focus-visible .visit-pill {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(243, 241, 234, 0.28);
+  margin-bottom: 20px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  margin-bottom: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(243, 241, 234, 0.14);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.status {
+  color: var(--on-dark-soft);
+}
+
+/* O case ganha só cor e um traço antes do texto, sem caixa. */
+.status.case {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--teal);
+}
+
+.status.case::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
 }
 
 .kind {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: var(--accent-soft);
-  padding: 5px 12px;
-  border-radius: 100px;
-  margin-bottom: 16px;
+  color: var(--muted);
 }
 
 .featured-title {
-  font-size: clamp(1.7rem, 3vw, 2.2rem);
-  margin-bottom: 14px;
+  font-size: clamp(2rem, 3.6vw, 2.8rem);
+  color: var(--on-dark);
+  margin-bottom: 16px;
 }
 
 .featured-description {
-  color: var(--ink-soft);
+  color: var(--on-dark-soft);
   margin-bottom: 24px;
 }
 
@@ -337,7 +369,7 @@ onMounted(() => animateWhenReady(async () => {
   align-items: flex-start;
   gap: 10px;
   font-size: 0.95rem;
-  color: var(--ink-soft);
+  color: var(--on-dark-soft);
 }
 
 .check {
@@ -346,15 +378,39 @@ onMounted(() => animateWhenReady(async () => {
   margin-top: 4px;
 }
 
-.featured-cta {
-  align-self: flex-start;
+.featured-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.projects .btn.ghost {
+  background: transparent;
+  color: var(--on-dark);
+  border-color: rgba(243, 241, 234, 0.25);
+}
+
+.projects .btn.ghost:hover {
+  border-color: var(--on-dark);
+  transform: translateY(-2px);
+}
+
+/* .btn.primary é escuro por padrão; aqui o fundo já é escuro. */
+.projects .btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.projects .btn.primary:hover {
+  background: var(--on-dark);
+  color: var(--ink);
 }
 
 /* --- Projetos técnicos --- */
 .technical {
   margin-top: 88px;
   padding-top: 56px;
-  border-top: 1px solid var(--border-strong);
+  border-top: 1px solid rgba(243, 241, 234, 0.14);
 }
 
 .technical-head {
@@ -364,11 +420,12 @@ onMounted(() => animateWhenReady(async () => {
 
 .technical-title {
   font-size: 1.4rem;
+  color: var(--on-dark);
   margin-bottom: 10px;
 }
 
 .technical-lead {
-  color: var(--ink-soft);
+  color: var(--on-dark-soft);
   font-size: 0.98rem;
 }
 
@@ -381,8 +438,8 @@ onMounted(() => animateWhenReady(async () => {
 .tech-card {
   display: flex;
   flex-direction: column;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--dark-panel-alt);
+  border: 1px solid rgba(243, 241, 234, 0.1);
   border-radius: var(--radius-lg);
   overflow: hidden;
   text-decoration: none;
@@ -391,8 +448,8 @@ onMounted(() => animateWhenReady(async () => {
 
 .tech-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-strong);
+  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.7);
+  border-color: rgba(243, 241, 234, 0.25);
 }
 
 /* Altura fixa + object-fit contém o recorte da screenshot dentro do
@@ -400,8 +457,8 @@ onMounted(() => animateWhenReady(async () => {
 .tech-shot-wrap {
   height: 150px;
   overflow: hidden;
-  background: var(--bg-alt);
-  border-bottom: 1px solid var(--border);
+  background: var(--dark-panel);
+  border-bottom: 1px solid rgba(243, 241, 234, 0.1);
 }
 
 .tech-shot {
@@ -423,7 +480,7 @@ onMounted(() => animateWhenReady(async () => {
   align-items: center;
   justify-content: center;
   background: var(--dark-panel);
-  color: var(--on-dark);
+  color: var(--on-dark-soft);
   font-family: var(--font-display);
   font-size: 2.6rem;
   font-weight: 600;
@@ -438,12 +495,13 @@ onMounted(() => animateWhenReady(async () => {
 
 .tech-title {
   font-size: 1.12rem;
+  color: var(--on-dark);
   margin-bottom: 8px;
 }
 
 .tech-description {
   font-size: 0.9rem;
-  color: var(--ink-soft);
+  color: var(--on-dark-soft);
   line-height: 1.6;
   margin-bottom: 18px;
   flex: 1;
@@ -455,7 +513,7 @@ onMounted(() => animateWhenReady(async () => {
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--on-dark);
 }
 
 .tech-card:hover .tech-link {
@@ -463,10 +521,28 @@ onMounted(() => animateWhenReady(async () => {
 }
 
 @media (max-width: 992px) {
-  .featured-card {
+  .featured-list {
+    gap: 80px;
+  }
+
+  .featured-card,
+  .featured-card:nth-child(even) {
     grid-template-columns: 1fr;
     gap: 32px;
-    padding: 24px;
+  }
+
+  /* No celular a imagem sempre vem primeiro, sem alternar */
+  .featured-card:nth-child(even) .featured-visual {
+    order: 0;
+  }
+
+  .visit-pill {
+    opacity: 1;
+    transform: none;
+  }
+
+  .section-lead {
+    margin-bottom: 56px;
   }
 
   .technical {
@@ -475,11 +551,11 @@ onMounted(() => animateWhenReady(async () => {
 }
 
 @media (max-width: 480px) {
-  .featured-card {
-    padding: 18px;
+  .projects {
+    padding: var(--space-section-mobile) 0;
   }
 
-  .featured-cta {
+  .featured-actions .btn {
     width: 100%;
   }
 }

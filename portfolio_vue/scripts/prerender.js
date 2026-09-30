@@ -9,12 +9,19 @@ import { readFile, writeFile, rm } from 'node:fs/promises'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { featured } from '../src/data/projects.js'
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const PAGES = [
   { key: 'main', html: 'dist/index.html' },
   { key: 'devProfile', html: 'dist/sobre-o-dev/index.html' },
   { key: 'avaliar', html: 'dist/avaliar/index.html' },
+  ...featured.filter(p => p.status === 'case').map(({ slug }) => ({
+    key: 'case',
+    slug,
+    html: `dist/projetos/${slug}/index.html`,
+  })),
 ]
 
 const { render } = await import(
@@ -24,7 +31,7 @@ const { render } = await import(
 for (const page of PAGES) {
   const file = resolve(root, page.html)
   const template = await readFile(file, 'utf-8')
-  const appHtml = await render(page.key)
+  const appHtml = await render(page.key, { slug: page.slug })
 
   if (!template.includes('<div id="app"></div>')) {
     throw new Error(
